@@ -371,7 +371,7 @@ Anova(eeMod1, type = 3)
 eeMod2 <- glm(NewGermEv ~ SpPresent + Litter.g, data = EvEstDat1, family = poisson)
 summary(eeMod2)
 Anova(eeMod2)
-# no sig interaction
+# no sig effect
 
 eeMod3 <- glm(NewGermEv ~ SpPresent * Litter.yes, data = EvEstDat1, family = poisson)
 summary(eeMod3)
