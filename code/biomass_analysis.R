@@ -51,9 +51,12 @@ dat2 <- dat1 %>%
 filter(dat2, is.na(Weight.g))
 
 # split by species and merge with count data
-mdat <- dat2 %>% 
+mdat1 <- dat2 %>% 
   filter(WeighedSp == "Mv" & SpPresent != "Ev") %>%
   full_join(select(mcounts, TrtID, GermMv))
+
+mdat2 <- mdat1 %>% 
+  filter(Shade == "no")
 
 edat <- filter(dat2, WeighedSp == "Ev" & SpPresent != "Mv") %>%
   full_join(select(ecounts, TrtID, GermEv))
@@ -62,36 +65,68 @@ edat <- filter(dat2, WeighedSp == "Ev" & SpPresent != "Mv") %>%
 #### biomass statistics ####
 
 # Mv models
-mbMod1 <- lm(Weight.g ~ SpPresent * Litter.g + Shade, data = mdat)
+mbMod1 <- lm(Weight.g ~ SpPresent * Litter.g + Shade, data = mdat1)
 summary(mbMod1)
 Anova(mbMod1, type = 3)
 # no sig interaction
 
-mbMod2 <- lm(Weight.g ~ SpPresent + Litter.g + Shade, data = mdat)
+mbMod2 <- lm(Weight.g ~ SpPresent + Litter.g + Shade, data = mdat1)
 summary(mbMod2)
 Anova(mbMod2)
 # all are sig
 plot(mbMod2)
 
-mbMod3 <- lm(Weight.g ~ SpPresent * Litter.yes + Shade, data = mdat)
+mbMod3 <- lm(Weight.g ~ SpPresent * Litter.yes + Shade, data = mdat1)
 summary(mbMod3)
 Anova(mbMod3, type = 3)
 # no sig interaction
 
-mbMod4 <- lm(Weight.g ~ SpPresent + Litter.yes + Shade, data = mdat)
+mbMod4 <- lm(Weight.g ~ SpPresent + Litter.yes + Shade, data = mdat1)
 summary(mbMod4)
 Anova(mbMod4)
 # sp present and shade are sig
 
-mbMod5 <- lm(LogWeight.g ~ offset(log(GermMv)) + SpPresent * Litter.g + Shade, data = mdat)
+mbMod5 <- lm(LogWeight.g ~ offset(log(GermMv)) + SpPresent * Litter.g + Shade, data = mdat1)
 summary(mbMod5)
 Anova(mbMod5, type = 3)
 # no sig interaction
 
-mbMod6 <- lm(LogWeight.g ~ offset(log(GermMv)) + SpPresent + Litter.g + Shade, data = mdat)
+mbMod6 <- lm(LogWeight.g ~ offset(log(GermMv)) + SpPresent + Litter.g + Shade, data = mdat1)
 summary(mbMod6)
 Anova(mbMod6)
 # shade is sig
+
+# Mv models without shade
+mbMod2_1 <- lm(Weight.g ~ SpPresent * Litter.g, data = mdat2)
+summary(mbMod2_1)
+Anova(mbMod2_1, type = 3)
+# no sig interaction
+
+mbMod2_2 <- lm(Weight.g ~ SpPresent + Litter.g, data = mdat2)
+summary(mbMod2_2)
+Anova(mbMod2_2)
+# all are sig
+plot(mbMod2_2)
+
+mbMod2_3 <- lm(Weight.g ~ SpPresent * Litter.yes, data = mdat2)
+summary(mbMod2_3)
+Anova(mbMod2_3, type = 3)
+# no sig interaction
+
+mbMod2_4 <- lm(Weight.g ~ SpPresent + Litter.yes, data = mdat2)
+summary(mbMod2_4)
+Anova(mbMod2_4)
+# sp present is sig
+
+mbMod2_5 <- lm(LogWeight.g ~ offset(log(GermMv)) + SpPresent * Litter.g, data = mdat2)
+summary(mbMod2_5)
+Anova(mbMod2_5, type = 3)
+# no sig interaction
+
+mbMod2_6 <- lm(LogWeight.g ~ offset(log(GermMv)) + SpPresent + Litter.g, data = mdat2)
+summary(mbMod2_6)
+Anova(mbMod2_6)
+# none are sig
 
 # Ev models
 ebMod1 <- lm(Weight.g ~ SpPresent * Litter.g, data = edat)
@@ -130,11 +165,14 @@ Anova(ebMod6)
 #### outputs ####
 
 # save datasets
-write_csv(mdat, "./output/mv_biomass_data.csv")
+write_csv(mdat1, "./output/mv_with_shade_biomass_data.csv")
+write_csv(mdat2, "./output/mv_biomass_data.csv")
 write_csv(edat, "./output/ev_biomass_data.csv")
 
 # save models
-save(mbMod2, file = "./output/mv_biomass_model.rda")
-save(mbMod6, file = "./output/mv_pcbiomass_model.rda")
+save(mbMod2, file = "./output/mv_with_shade_biomass_model.rda")
+save(mbMod6, file = "./output/mv_with_shade_pcbiomass_model.rda")
+save(mbMod2_2, file = "./output/mv_biomass_model.rda")
+save(mbMod2_6, file = "./output/mv_pcbiomass_model.rda")
 save(ebMod4, file = "./output/ev_biomass_model.rda")
 save(ebMod6, file = "./output/ev_pcbiomass_model.rda")

@@ -299,7 +299,7 @@ dat6 %>%
 #### establishment statistics ####
 
 # subset data by date
-MvEstDat <- dat6 %>%
+MvEstDat1 <- dat6 %>%
   filter(SpPresent != "Ev" & Date3 == "2018-06-27" & !is.na(CorGermMv))
 
 EvEstDat1 <- dat6 %>%
@@ -308,9 +308,16 @@ EvEstDat1 <- dat6 %>%
 EvEstDat2 <- dat6 %>%
   filter(SpPresent != "Mv" & Date3 == "2018-10-05"& !is.na(NewGermEv))
 
+# remove shade treatment from Mv
+MvEstDat2 <- MvEstDat1 %>%
+  filter(Shade == "no")
+
 # mean vs. variance
-mean(MvEstDat$CorGermMv)
-var(MvEstDat$CorGermMv) # lower
+mean(MvEstDat1$CorGermMv)
+var(MvEstDat1$CorGermMv) # lower
+
+mean(MvEstDat2$CorGermMv)
+var(MvEstDat2$CorGermMv) # lower
 
 mean(EvEstDat1$NewGermEv)
 var(EvEstDat1$NewGermEv) # lower
@@ -319,47 +326,90 @@ mean(EvEstDat2$NewGermEv)
 var(EvEstDat2$NewGermEv) # much higher - need quasiPoisson
 
 # Mv models
-meMod1 <- glm(CorGermMv ~ SpPresent * Litter.g + Shade, data = MvEstDat, family = poisson)
+meMod1 <- glm(CorGermMv ~ SpPresent * Litter.g + Shade, data = MvEstDat1, family = poisson)
 summary(meMod1)
 Anova(meMod1, type = 3)
 # this is the same as doing drop1, test = "Chisq"
 # no sig interaction
 
-meMod2 <- glm(CorGermMv ~ SpPresent + Litter.g + Shade, data = MvEstDat, family = poisson)
+meMod2 <- glm(CorGermMv ~ SpPresent + Litter.g + Shade, data = MvEstDat1, family = poisson)
 summary(meMod2)
 Anova(meMod2)
 # Litter has a significant effect
 # plot(meMod2)
 
-meMod3 <- glm(CorGermMv ~ SpPresent * Litter.yes + Shade, data = MvEstDat, family = poisson)
+meMod3 <- glm(CorGermMv ~ SpPresent * Litter.yes + Shade, data = MvEstDat1, family = poisson)
 summary(meMod3)
 Anova(meMod3, type = 3)
 # no sig interaction
 
-meMod4 <- glm(CorGermMv ~ SpPresent + Litter.yes + Shade, data = MvEstDat, family = poisson)
+meMod4 <- glm(CorGermMv ~ SpPresent + Litter.yes + Shade, data = MvEstDat1, family = poisson)
 summary(meMod4)
 Anova(meMod4)
 # no sig effects
 
 # Mv models without litter correction
-meMod5 <- glm(NewGermMv2 ~ SpPresent * Litter.g + Shade, data = MvEstDat, family = poisson)
+meMod5 <- glm(NewGermMv2 ~ SpPresent * Litter.g + Shade, data = MvEstDat1, family = poisson)
 summary(meMod5)
 Anova(meMod5, type = 3)
 # no sig interaction
 
-meMod6 <- glm(NewGermMv2 ~ SpPresent + Litter.g + Shade, data = MvEstDat, family = poisson)
+meMod6 <- glm(NewGermMv2 ~ SpPresent + Litter.g + Shade, data = MvEstDat1, family = poisson)
 summary(meMod6)
 Anova(meMod6)
 # no sig effect
 
-meMod7 <- glm(NewGermMv2 ~ SpPresent * Litter.yes + Shade, data = MvEstDat, family = poisson)
+meMod7 <- glm(NewGermMv2 ~ SpPresent * Litter.yes + Shade, data = MvEstDat1, family = poisson)
 summary(meMod7)
 Anova(meMod7, type = 3)
 # no sig interaction
 
-meMod8 <- glm(NewGermMv2 ~ SpPresent + Litter.yes + Shade, data = MvEstDat, family = poisson)
+meMod8 <- glm(NewGermMv2 ~ SpPresent + Litter.yes + Shade, data = MvEstDat1, family = poisson)
 summary(meMod8)
 Anova(meMod8)
+# no sig effects
+
+# Mv models
+meMod2_1 <- glm(CorGermMv ~ SpPresent * Litter.g, data = MvEstDat2, family = poisson)
+summary(meMod2_1)
+Anova(meMod2_1, type = 3)
+# no sig interaction
+
+meMod2_2 <- glm(CorGermMv ~ SpPresent + Litter.g, data = MvEstDat2, family = poisson)
+summary(meMod2_2)
+Anova(meMod2_2)
+# Litter has a significant effect
+# plot(meMod2_2)
+
+meMod2_3 <- glm(CorGermMv ~ SpPresent * Litter.yes, data = MvEstDat2, family = poisson)
+summary(meMod2_3)
+Anova(meMod2_3, type = 3)
+# no sig interaction
+
+meMod2_4 <- glm(CorGermMv ~ SpPresent + Litter.yes, data = MvEstDat2, family = poisson)
+summary(meMod2_4)
+Anova(meMod2_4)
+# no sig effects
+
+# Mv models without litter correction
+meMod2_5 <- glm(NewGermMv2 ~ SpPresent * Litter.g, data = MvEstDat2, family = poisson)
+summary(meMod2_5)
+Anova(meMod2_5, type = 3)
+# no sig interaction
+
+meMod2_6 <- glm(NewGermMv2 ~ SpPresent + Litter.g, data = MvEstDat2, family = poisson)
+summary(meMod2_6)
+Anova(meMod2_6)
+# no sig effect
+
+meMod2_7 <- glm(NewGermMv2 ~ SpPresent * Litter.yes, data = MvEstDat2, family = poisson)
+summary(meMod2_7)
+Anova(meMod2_7, type = 3)
+# no sig interaction
+
+meMod2_8 <- glm(NewGermMv2 ~ SpPresent + Litter.yes, data = MvEstDat2, family = poisson)
+summary(meMod2_8)
+Anova(meMod2_8)
 # no sig effects
 
 # Ev models
@@ -437,15 +487,18 @@ MvBmDat <- dat6 %>%
   filter(SpPresent != "Ev" & Date3 == "2018-10-05")
 
 # save datasets
-write_csv(MvEstDat, "./output/mv_establishment_data.csv")
+write_csv(MvEstDat1, "./output/mv_with_shade_establishment_data.csv")
+write_csv(MvEstDat2, "./output/mv_establishment_data.csv")
 write_csv(EvEstDat1, "./output/ev_establishment_data.csv")
 write_csv(EvEstDat2, "./output/ev_infection_data.csv")
 write_csv(MvBmDat, "./output/mv_count_data.csv")
 write_csv(dat6, "./output/establishment_infection_data.csv")
 
 # save models
-save(meMod2, file = "./output/mv_establishment_model.rda")
-save(meMod6, file = "./output/mv_uncorrected_establishment_model.rda")
+save(meMod2, file = "./output/mv_with_shade_establishment_model.rda")
+save(meMod6, file = "./output/mv_with_shade_uncorrected_establishment_model.rda")
+save(meMod2_2, file = "./output/mv_establishment_model.rda")
+save(meMod2_6, file = "./output/mv_uncorrected_establishment_model.rda")
 save(eeMod4, file = "./output/ev_establishment_model.rda")
 save(eiMod2, file = "./output/ev_infection_model_grams.rda")
 save(eiMod3, file = "./output/ev_infection_model_present.rda")
