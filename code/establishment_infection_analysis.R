@@ -348,6 +348,9 @@ summary(meMod4)
 Anova(meMod4)
 # no sig effects
 
+# compare litter types
+AIC(meMod2, meMod4)
+
 # Mv models without litter correction
 meMod5 <- glm(NewGermMv2 ~ SpPresent * Litter.g + Shade, data = MvEstDat1, family = poisson)
 summary(meMod5)
@@ -457,6 +460,9 @@ Anova(eeMod8)
 # litter and species have a sig effect
 # plot(eeMod8)
 # The effect of Mv for post-harvest, but not day 6 may be because Mv made the Ev smaller with fewer tillers, but didn't affect the number of seeds that established. This will be captured with biomass.
+
+# compare categorical and continuous
+AIC(eeMod2, eeMod4)
 
 
 #### infection statistics ####
