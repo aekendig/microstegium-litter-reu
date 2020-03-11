@@ -287,7 +287,8 @@ base_estplot <- estdat %>%
   base_theme +
   theme(legend.position = "bottom",
         legend.direction = "horizontal",
-        legend.box.margin = margin(0, 0, 0, 0))
+        legend.box.margin = margin(0, 0, 0, 0)) + 
+  guides(fill = guide_legend(override.aes = list(size = 4)))
 
 estplot_ev <- filter(estdat, Response == "Ev planted") %>%
   ggplot(aes(x = Litter.g, y = Estab, fill = SpPresent)) +
@@ -458,7 +459,8 @@ infplot2 <- eidat %>%
   scale_fill_manual(values = col_pal[1:2], name = "Species present") +  
   ylab("Proportion of Ev stems infected") +
   base_theme +
-  theme(axis.title.x = element_blank())
+  theme(axis.title.x = element_blank()) + 
+  guides(fill = guide_legend(override.aes = list(size = 4)))
 
 pdf("./output/infection_figure.pdf", width = 3, height = 2.5)
 infplot2
