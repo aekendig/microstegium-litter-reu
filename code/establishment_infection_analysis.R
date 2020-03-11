@@ -306,7 +306,8 @@ EvEstDat1 <- dat6 %>%
   filter(SpPresent != "Mv" & Date3 == "2018-07-24" & !is.na(NewGermEv))
 
 EvEstDat2 <- dat6 %>%
-  filter(SpPresent != "Mv" & Date3 == "2018-10-05"& !is.na(NewGermEv))
+  filter(SpPresent != "Mv" & Date3 == "2018-10-05"& !is.na(NewGermEv)) %>%
+  mutate(HealthyEv = GermEv - InfectedEv)
 
 # remove shade treatment from Mv
 MvEstDat2 <- MvEstDat1 %>%
@@ -468,18 +469,18 @@ AIC(eeMod2, eeMod4)
 #### infection statistics ####
 
 # Ev models with post-harvest counts
-eiMod1 <- glm(cbind(InfectedEv,GermEv) ~ SpPresent * Litter.g, data = EvEstDat2, family = binomial)
+eiMod1 <- glm(cbind(InfectedEv,HealthyEv) ~ SpPresent * Litter.g, data = EvEstDat2, family = binomial)
 summary(eiMod1)
 Anova(eiMod1, type = 3)
 # no sig interaction
 
-eiMod2 <- glm(cbind(InfectedEv,GermEv) ~ SpPresent + Litter.g, data = EvEstDat2, family = binomial)
+eiMod2 <- glm(cbind(InfectedEv,HealthyEv) ~ SpPresent + Litter.g, data = EvEstDat2, family = binomial)
 summary(eiMod2)
 Anova(eiMod2)
 # sig effect of both
 # plot(eiMod2)
 
-eiMod3 <- glm(cbind(InfectedEv,GermEv) ~ SpPresent * Litter.yes, data = EvEstDat2, family = binomial)
+eiMod3 <- glm(cbind(InfectedEv,HealthyEv) ~ SpPresent * Litter.yes, data = EvEstDat2, family = binomial)
 summary(eiMod3)
 Anova(eiMod3, type = 3)
 # sig interaction

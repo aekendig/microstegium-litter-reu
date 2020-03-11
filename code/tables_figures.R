@@ -39,6 +39,13 @@ axisTitle = 11
 legendText = 9
 legendTitle = 9
 
+# function to convert logit to probability
+logit2prob <- function(logit){
+  odds <- exp(logit)
+  prob <- odds / (1 + odds)
+  return(prob)
+}
+
 
 #### biomass by treatment ####
 
@@ -129,7 +136,79 @@ infpred <- tibble(SpPresent = rep(c("Ev", "Ev+Mv"), each = 100),
          PropInfEv.se = predict(eiMod2, newdata = ., type = "response", se.fit = T)$se.fit,
          PropInfEv.CI = PropInfEv.se * 1.96)
 
+
+#### percent changes ####
+
+# % change: y - py = x
+# % change: (1 - p)y = x
+# % change: 1 - p = x/y
+# % change: p = 1 - x/y
+
+# Mv total biomass litter effect (max amount vs. none)
+min_mv_bio_litt = biopred %>%
+  filter(Litter.g == max(dat$Litter.g) & SpPresent == "Mv") %>%
+  select(Weight)
+
+max_mv_bio = biopred %>%
+  filter(Litter.g == min(dat$Litter.g) & SpPresent == "Mv") %>%
+  select(Weight)
+
+(prop_mv_bio_litt = 1 - min_mv_bio_litt/max_mv_bio)
+
+# Mv total biomass live plant effect
+min_mv_bio_live = biopred %>%
+  filter(Litter.g == min(dat$Litter.g) & SpPresent == "Ev+Mv") %>%
+  select(Weight)
+
+(prop_mv_bio_live = 1 - min_mv_bio_live/max_mv_bio)
   
+# Ev total biomass litter effect (present vs. none)
+
+max_ev_bio = coef(ebMod4)[1]
+min_ev_bio_litt = coef(ebMod4)[1] + coef(ebMod4)[3]
+
+(prop_ev_bio_litt = 1 - min_ev_bio_litt/max_ev_bio)
+
+# Ev total biomass live effect
+
+min_ev_bio_live = coef(ebMod4)[1] + coef(ebMod4)[2]
+
+(prop_ev_bio_live = 1 - min_ev_bio_live/max_ev_bio_live)
+
+# Mv establishment litter effect (max amount vs. none)
+min_mv_est_litt = estpred %>%
+  filter(Litter.g == max(dat$Litter.g) & SpPresent == "Mv") %>%
+  select(Estab)
+
+max_mv_est_litt = estpred %>%
+  filter(Litter.g == min(dat$Litter.g) & SpPresent == "Mv") %>%
+  select(Estab)
+
+(prop_mv_est_litt = 1 - min_mv_est_litt/max_mv_est_litt)
+
+# Ev establishment litter effect
+
+max_ev_est_litt = exp(coef(eeMod4)[1])
+min_ev_est_litt = exp(coef(eeMod4)[1] + coef(eeMod4)[3])
+
+(prop_ev_est_litt = 1 - min_ev_est_litt/max_ev_est_litt)
+
+# Ev infection both effects
+
+min_ev_inf = logit2prob(coef(eiMod3)[1])
+max_ev_inf_litt = logit2prob(coef(eiMod3)[1] + coef(eiMod3)[3])
+
+(prop_ev_inf_litt = max_ev_inf_litt/min_ev_inf - 1)
+
+max_ev_inf_live = logit2prob(coef(eiMod3)[1] + coef(eiMod3)[2])
+
+(prop_ev_inf_live = max_ev_inf_live/min_ev_inf - 1)
+
+max_ev_inf = logit2prob(coef(eiMod3)[1] + coef(eiMod3)[2] + coef(eiMod3)[3]+ coef(eiMod3)[4])
+
+(prop_ev_inf = max_ev_inf/min_ev_inf - 1)
+
+
 #### create tables ####
 
 Anova(eeMod4)
