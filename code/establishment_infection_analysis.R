@@ -14,6 +14,7 @@ rm(list=ls())
 library(tidyverse)
 library(Hmisc)
 library(car)
+library(brms)
 
 # import data (all data combined up to post harvest)
 dat1 <- read_csv("./data/MvEv_GerminationInfection_PostHarvest.csv")
@@ -466,6 +467,51 @@ Anova(eeMod8)
 AIC(eeMod2, eeMod4)
 
 
+#### establishment statistics for Amy's model ####
+
+# select data with Ev by itself
+ev_bh_dat <- filter(EvEstDat1, SpPresent == "Ev")
+
+# initial value
+filter(ev_bh_dat, Treatment == "None") %>%
+  summarise(mean_germ = mean(NewGermEv))
+
+# fit model
+# model
+ev_bh_mod <- brm(data = ev_bh_dat, family = gaussian,
+                 bf(NewGermEv ~ g0/(1 + alpha * Litter.g), 
+                    g0 ~ 1, 
+                    alpha ~ 1, 
+                    nl = T),
+                 prior <- c(prior(normal(42, 10), nlpar = "g0", lb = 0),
+                            prior(exponential(0.5), nlpar = "alpha", lb = 0),
+                            prior(cauchy(0, 1), class = sigma)),
+                 iter = 6000, warmup = 1000, chains = 1, cores = 1)
+
+prior_summary(ev_bh_mod)
+summary(ev_bh_mod)
+ev_bh_mod <- update(ev_bh_mod, chains = 3)
+plot(ev_bh_mod)
+
+# simulate data
+ev_bh_sim_dat <- tibble(Litter.g = seq(min(ev_bh_dat$Litter.g), max(ev_bh_dat$Litter.g), length.out = 200)) %>%
+  mutate(NewGermEv = fitted(ev_bh_mod, newdata = .)[, "Estimate"],
+         lower = fitted(ev_bh_mod, newdata = .)[, "Q2.5"],
+         upper = fitted(ev_bh_mod, newdata = .)[, "Q97.5"])
+
+# plot raw
+ggplot(ev_bh_dat, aes(x = Litter.g, y = NewGermEv)) +
+  geom_point() +
+  geom_ribbon(data = ev_bh_sim_dat, alpha = 0.5, aes(ymin = lower, ymax = upper)) +
+  geom_line(data = ev_bh_sim_dat)
+
+ggplot(ev_bh_dat, aes(x = Litter.g, y = NewGermEv/50)) +
+  geom_point() +
+  geom_ribbon(data = ev_bh_sim_dat, alpha = 0.5, aes(ymin = lower/50, ymax = upper/50)) +
+  geom_line(data = ev_bh_sim_dat)
+
+
+
 #### infection statistics ####
 
 # Ev models with post-harvest counts
@@ -509,3 +555,4 @@ save(meMod2_6, file = "./output/mv_uncorrected_establishment_model.rda")
 save(eeMod4, file = "./output/ev_establishment_model.rda")
 save(eiMod2, file = "./output/ev_infection_model_grams.rda")
 save(eiMod3, file = "./output/ev_infection_model_present.rda")
+save(ev_bh_mod, file = "./output/ev_beverton_holt_establishment_modl.rda")
