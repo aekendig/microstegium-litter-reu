@@ -42,3 +42,7 @@ rsconnect/
 # Data
 /data/
 /output/
+/intermediate-data/
+
+# Manuscript
+/manuscript/

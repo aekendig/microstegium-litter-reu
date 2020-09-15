@@ -11,12 +11,11 @@ rm(list=ls())
 
 # load libraries
 library(tidyverse)
-library(car)
 
 # import data (all data combined up to post harvest)
 dat1 <- read_csv("./data/MvEv_Biomass_110918.csv")
-ecounts <- read_csv("./output/ev_establishment_data.csv")
-mcounts <- read_csv("./output/mv_count_data.csv")
+MvEstDat <- read_csv("intermediate-data/mv_establishment_data.csv")
+EvEstDat <- read_csv("intermediate-data/ev_establishment_data.csv")
 
 
 #### edit data ####
@@ -40,10 +39,10 @@ dat2 <- dat1 %>%
                               Litter == "Med" ~ 1.82,
                               Litter == "High" ~ 3.64),
          SpPresent = factor(SpPresent, levels = c("Ev", "Mv", "Ev+Mv")),
+         Competition = recode(SpPresent, Ev = 0, Mv = 0, "Ev+Mv" = 1),
+         Planting = ifelse(Competition == 0, "alone", "in competition"),
          WeighedSp = dplyr::recode(WeighedSp, MV = "Mv"), 
          TrtID = paste(SpPresent, Litter, Shade, PotID, sep="."),
-         Litter.yes=as.factor(ifelse(Litter == "None", 0, 1)),
-         Litter.present = dplyr::recode(Litter.yes, "0" = "No litter", "1" = "Litter"),
          LogWeight.g = log(Weight.g)) %>%
   filter(Notes != "intentionally not measured" | is.na(Notes))
 
@@ -51,128 +50,175 @@ dat2 <- dat1 %>%
 filter(dat2, is.na(Weight.g))
 
 # split by species and merge with count data
-mdat1 <- dat2 %>% 
+MvBioDat <- dat2 %>% 
   filter(WeighedSp == "Mv" & SpPresent != "Ev") %>%
-  full_join(select(mcounts, TrtID, GermMv))
-
-mdat2 <- mdat1 %>% 
+  full_join(select(MvEstDat, TrtID, GermMv)) %>% 
+  mutate(LogPerCapWeight.g = log(Weight.g/GermMv)) %>%
   filter(Shade == "no")
 
-edat <- filter(dat2, WeighedSp == "Ev" & SpPresent != "Mv") %>%
-  full_join(select(ecounts, TrtID, GermEv))
+EvBioDat <- filter(dat2, WeighedSp == "Ev" & SpPresent != "Mv") %>%
+  full_join(select(EvEstDat, TrtID, GermEv)) %>%
+  mutate(LogPerCapWeight.g = log(Weight.g/GermEv))
 
 
-#### biomass statistics ####
+#### visualizations ####
 
-# Mv models
-mbMod1 <- lm(Weight.g ~ SpPresent * Litter.g + Shade, data = mdat1)
-summary(mbMod1)
-Anova(mbMod1, type = 3)
-# no sig interaction
+# Mv log-transformed
+ggplot(MvBioDat, aes(x = Litter.g, y = LogWeight.g, color = SpPresent)) +
+  stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", width = 0, position = position_dodge(0.1)) +
+  stat_summary(fun = "mean", geom = "point", position = position_dodge(0.1)) +
+  theme_bw()
 
-mbMod2 <- lm(Weight.g ~ SpPresent + Litter.g + Shade, data = mdat1)
-summary(mbMod2)
-Anova(mbMod2)
-# all are sig
-plot(mbMod2)
+# Mv per capita
+ggplot(MvBioDat, aes(x = Litter.g, y = LogPerCapWeight.g, color = SpPresent)) +
+  stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", width = 0, position = position_dodge(0.1)) +
+  stat_summary(fun = "mean", geom = "point", position = position_dodge(0.1)) +
+  theme_bw()
 
-mbMod3 <- lm(Weight.g ~ SpPresent * Litter.yes + Shade, data = mdat1)
-summary(mbMod3)
-Anova(mbMod3, type = 3)
-# no sig interaction
+# Ev log-transformed
+ggplot(EvBioDat, aes(x = Litter.g, y = LogWeight.g, color = SpPresent)) +
+  stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", width = 0, position = position_dodge(0.1)) +
+  stat_summary(fun = "mean", geom = "point", position = position_dodge(0.1)) +
+  theme_bw()
 
-mbMod4 <- lm(Weight.g ~ SpPresent + Litter.yes + Shade, data = mdat1)
-summary(mbMod4)
-Anova(mbMod4)
-# sp present and shade are sig
-
-mbMod5 <- lm(LogWeight.g ~ offset(log(GermMv)) + SpPresent * Litter.g + Shade, data = mdat1)
-summary(mbMod5)
-Anova(mbMod5, type = 3)
-# no sig interaction
-
-mbMod6 <- lm(LogWeight.g ~ offset(log(GermMv)) + SpPresent + Litter.g + Shade, data = mdat1)
-summary(mbMod6)
-Anova(mbMod6)
-# shade is sig
-
-# Mv models without shade
-mbMod2_1 <- lm(Weight.g ~ SpPresent * Litter.g, data = mdat2)
-summary(mbMod2_1)
-Anova(mbMod2_1, type = 3)
-# no sig interaction
-
-mbMod2_2 <- lm(Weight.g ~ SpPresent + Litter.g, data = mdat2)
-summary(mbMod2_2)
-Anova(mbMod2_2)
-# all are sig
-plot(mbMod2_2)
-
-mbMod2_3 <- lm(Weight.g ~ SpPresent * Litter.yes, data = mdat2)
-summary(mbMod2_3)
-Anova(mbMod2_3, type = 3)
-# no sig interaction
-
-mbMod2_4 <- lm(Weight.g ~ SpPresent + Litter.yes, data = mdat2)
-summary(mbMod2_4)
-Anova(mbMod2_4)
-# sp present is sig
-
-mbMod2_5 <- lm(LogWeight.g ~ offset(log(GermMv)) + SpPresent * Litter.g, data = mdat2)
-summary(mbMod2_5)
-Anova(mbMod2_5, type = 3)
-# no sig interaction
-
-mbMod2_6 <- lm(LogWeight.g ~ offset(log(GermMv)) + SpPresent + Litter.g, data = mdat2)
-summary(mbMod2_6)
-Anova(mbMod2_6)
-# none are sig
-
-# Ev models
-ebMod1 <- lm(Weight.g ~ SpPresent * Litter.g, data = edat)
-summary(ebMod1)
-Anova(ebMod1, type = 3)
-# no sig interaction
-
-ebMod2 <- lm(Weight.g ~ SpPresent + Litter.g, data = edat)
-summary(ebMod2)
-Anova(ebMod2)
-# sp present sig
-
-ebMod3 <- lm(Weight.g ~ SpPresent * Litter.yes , data = edat)
-summary(ebMod3)
-Anova(ebMod3, type = 3)
-# no sig interaction
-
-ebMod4 <- lm(Weight.g ~ SpPresent + Litter.yes , data = edat)
-summary(ebMod4)
-Anova(ebMod4)
-# both are sig
-plot(ebMod4)
-
-ebMod5 <- lm(LogWeight.g ~ offset(log(GermEv)) + SpPresent * Litter.yes, data = edat)
-summary(ebMod5)
-Anova(ebMod5, type = 3)
-# no sig interaction
-
-ebMod6 <- lm(LogWeight.g ~ offset(log(GermEv)) + SpPresent + Litter.yes, data = edat)
-summary(ebMod6)
-Anova(ebMod6)
-# litter no longer sig
-# plot(ebMod6)
+# Ev per capita
+ggplot(EvBioDat, aes(x = Litter.g, y = LogPerCapWeight.g, color = SpPresent)) +
+  stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", width = 0, position = position_dodge(0.1)) +
+  stat_summary(fun = "mean", geom = "point", position = position_dodge(0.1)) +
+  theme_bw()
 
 
-#### outputs ####
+#### prediction dataset ####
 
-# save datasets
-write_csv(mdat1, "./output/mv_with_shade_biomass_data.csv")
-write_csv(mdat2, "./output/mv_biomass_data.csv")
-write_csv(edat, "./output/ev_biomass_data.csv")
+pred_dat <- tibble(Litter.g = rep(seq(0, 3.64, length.out = 100), 2),
+                   Competition = rep(c(0, 1), each = 100)) %>%
+  mutate(Planting = ifelse(Competition == 0, "alone", "in competition"))
 
-# save models
-save(mbMod2, file = "./output/mv_with_shade_biomass_model.rda")
-save(mbMod6, file = "./output/mv_with_shade_pcbiomass_model.rda")
-save(mbMod2_2, file = "./output/mv_biomass_model.rda")
-save(mbMod2_6, file = "./output/mv_pcbiomass_model.rda")
-save(ebMod4, file = "./output/ev_biomass_model.rda")
-save(ebMod6, file = "./output/ev_pcbiomass_model.rda")
+
+#### Mv biomass ####
+
+# total biomass
+mv_bio_mod1 <- lm(LogWeight.g ~ Litter.g * Competition, data = MvBioDat)
+summary(mv_bio_mod1)
+
+# total biomass (categorical)
+mv_bio_mod1b <- lm(LogWeight.g ~ Litter * Competition, data = MvBioDat)
+summary(mv_bio_mod1b)
+
+# compare models
+AIC(mv_bio_mod1, mv_bio_mod1b)
+# continuous better
+# plot(mv_bio_mod1)
+
+# predicted values
+mv_pred_mod1 <- pred_dat %>%
+  mutate(pred = predict(mv_bio_mod1, newdata = ., type = "response"),
+         pred.se = predict(mv_bio_mod1, newdata = ., type = "response", se.fit = T)$se.fit)
+
+# visualize
+ggplot(MvBioDat, aes(x = Litter.g, y = LogWeight.g, color = Planting, fill = Planting)) +
+  geom_ribbon(data = mv_pred_mod1, aes(y = pred, ymin = pred - pred.se, ymax = pred + pred.se), alpha = 0.6, color = NA) +
+  geom_line(data = mv_pred_mod1, aes(y = pred)) +
+  stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", width = 0, position = position_dodge(0.1)) +
+  stat_summary(fun = "mean", geom = "point", position = position_dodge(0.1)) +
+  theme_bw()
+
+
+#### Mv per capita biomass ####
+
+# per capita biomass
+mv_bio_mod2 <- lm(LogPerCapWeight.g ~ Litter.g * Competition, data = MvBioDat)
+summary(mv_bio_mod2)
+summary(update(mv_bio_mod2, .~. -Litter.g:Competition))
+
+# per capita biomass (categorical)
+mv_bio_mod2b <- lm(LogPerCapWeight.g ~ Litter * Competition, data = MvBioDat)
+summary(mv_bio_mod2b)
+
+# compare models
+AIC(mv_bio_mod2, mv_bio_mod2b)
+# continuous is slightly better
+# plot(mv_bio_mod2)
+
+# predicted values
+mv_pred_mod2 <- pred_dat %>%
+  mutate(pred = predict(mv_bio_mod2, newdata = ., type = "response"),
+         pred.se = predict(mv_bio_mod2, newdata = ., type = "response", se.fit = T)$se.fit)
+
+# visualize
+ggplot(MvBioDat, aes(x = Litter.g, y = LogPerCapWeight.g, color = Planting, fill = Planting)) +
+  geom_ribbon(data = mv_pred_mod2, aes(y = pred, ymin = pred - pred.se, ymax = pred + pred.se), alpha = 0.6, color = NA) +
+  geom_line(data = mv_pred_mod2, aes(y = pred)) +
+  stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", width = 0, position = position_dodge(0.1)) +
+  stat_summary(fun = "mean", geom = "point", position = position_dodge(0.1)) +
+  theme_bw()
+
+
+#### Ev biomass ####
+
+# total biomass
+ev_bio_mod1 <- lm(LogWeight.g ~ Litter.g * Competition, data = EvBioDat)
+summary(ev_bio_mod1)
+
+# total biomass (categorical)
+ev_bio_mod1b <- lm(LogWeight.g ~ Litter * Competition, data = EvBioDat)
+summary(ev_bio_mod1b)
+summary(update(ev_bio_mod1b, .~. -Litter:Competition))
+
+# compare models
+AIC(ev_bio_mod1, ev_bio_mod1b)
+# categorical better
+# plot(Ev_bio_mod1b)
+
+# predicted values
+ev_pred_mod1 <- pred_dat %>%
+  mutate(pred = predict(ev_bio_mod1, newdata = ., type = "response"),
+         pred.se = predict(ev_bio_mod1, newdata = ., type = "response", se.fit = T)$se.fit)
+
+# visualize
+ggplot(EvBioDat, aes(x = Litter.g, y = LogWeight.g, color = Planting, fill = Planting)) +
+  geom_ribbon(data = ev_pred_mod1, aes(y = pred, ymin = pred - pred.se, ymax = pred + pred.se), alpha = 0.6, color = NA) +
+  geom_line(data = ev_pred_mod1, aes(y = pred)) +
+  stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", width = 0, position = position_dodge(0.1)) +
+  stat_summary(fun = "mean", geom = "point", position = position_dodge(0.1)) +
+  theme_bw()
+
+
+#### Ev per capita biomass ####
+
+# per capita biomass
+ev_bio_mod2 <- lm(LogPerCapWeight.g ~ Litter.g * Competition, data = EvBioDat)
+summary(ev_bio_mod2)
+
+# per capita biomass (categorical)
+ev_bio_mod2b <- lm(LogPerCapWeight.g ~ Litter * Competition, data = EvBioDat)
+summary(ev_bio_mod2b)
+summary(update(ev_bio_mod2b, .~. -Litter:Competition))
+
+# compare models
+AIC(ev_bio_mod2, ev_bio_mod2b)
+# categorical better
+# plot(ev_bio_mod2b)
+
+# predicted values
+ev_pred_mod2 <- pred_dat %>%
+  mutate(pred = predict(ev_bio_mod2, newdata = ., type = "response"),
+         pred.se = predict(ev_bio_mod2, newdata = ., type = "response", se.fit = T)$se.fit)
+
+# visualize
+ggplot(EvBioDat, aes(x = Litter.g, y = LogPerCapWeight.g, color = Planting, fill = Planting)) +
+  geom_ribbon(data = ev_pred_mod2, aes(y = pred, ymin = pred - pred.se, ymax = pred + pred.se), alpha = 0.6, color = NA) +
+  geom_line(data = ev_pred_mod2, aes(y = pred)) +
+  stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", width = 0, position = position_dodge(0.1)) +
+  stat_summary(fun = "mean", geom = "point", position = position_dodge(0.1)) +
+  theme_bw()
+
+
+#### output ####
+save(mv_bio_mod1, file = "output/mv_bio_model.rda")
+save(mv_bio_mod2, file = "output/mv_percap_bio_model.rda")
+save(ev_bio_mod1b, file = "output/ev_bio_model.rda")
+save(ev_bio_mod2b, file = "output/ev_percap_bio_model.rda")
+
+write_csv(MvBioDat, "intermediate-data/mv_biomass_data.csv")
+write_csv(EvBioDat, "intermediate-data/ev_biomass_data.csv")
