@@ -9,7 +9,6 @@
 rm(list=ls())
 
 # load libraries
-library(car)
 library(tidyverse)
 library(cowplot)
 library(ggsignif)
@@ -52,26 +51,34 @@ shape_pal = c(21, 22)
 
 # Mv establishment
 MvEstDat <- MvEstDat %>%
-  mutate(Planting = ifelse(Competition == 0, "alone", "in competition"))
+  mutate(Planting = dplyr::recode(Competition, "0" = "focal", "1" = "both") %>%
+           fct_rev()) %>%
+  ungroup()
 
 # Ev establishment
 EvEstDat <- EvEstDat %>%
   mutate(Litter = factor(Litter, levels = c("None", "Low", "Med", "High")),
-         Planting = ifelse(Competition == 0, "alone", "in competition"))
+         Planting = dplyr::recode(Competition, "0" = "focal", "1" = "both") %>%
+           fct_rev())
 
 # Ev infection
 EvInfDat <- EvInfDat %>%
   mutate(Litter = factor(Litter, levels = c("None", "Low", "Med", "High")),
-         Planting = ifelse(Competition == 0, "alone", "in competition"))
+         Planting = dplyr::recode(Competition, "0" = "focal", "1" = "both") %>%
+           fct_rev())
 
 # Ev biomass
 EvBioDat <- EvBioDat %>%
   mutate(Litter = factor(Litter, levels = c("None", "Low", "Med", "High")),
-         PerCapWeight.g = Weight.g/GermEv)
+         PerCapWeight.g = Weight.g/GermEv,
+         Planting = dplyr::recode(Competition, "0" = "focal", "1" = "both") %>%
+           fct_rev())
 
 # Mv biomass
 MvBioDat <- MvBioDat %>%
-  mutate(PerCapWeight.g = Weight.g/GermMv)
+  mutate(PerCapWeight.g = Weight.g/GermMv,
+         Planting = dplyr::recode(Competition, "0" = "focal", "1" = "both") %>%
+           fct_rev())
 
 # establishment data
 estDatL <- estDat %>%
@@ -79,46 +86,99 @@ estDatL <- estDat %>%
   select(Date2, Litter, SpPresent, Competition, PotID, NewGermEv, NewGermMv2) %>%
   pivot_longer(cols = starts_with("NewGerm"), names_to = "Species", values_to = "Establishment",
                names_prefix = "NewGerm") %>%
-  mutate(Planting = recode(Competition, "0" = "alone", "1" = "in competition"),
+  mutate(Planting = dplyr::recode(Competition, "0" = "focal", "1" = "both") %>%
+           fct_rev(),
          EstDate = case_when(Species == "Mv2" & SpPresent == "Mv" & PotID == 1 ~ "2018-07-11", 
                              Species == "Ev" & SpPresent == "Ev" & PotID == 1 ~ "2018-07-24",
                              TRUE ~ NA_character_) %>%
            as.Date(),
          Litter = factor(Litter, levels = c("None", "Low", "Med", "High")) %>%
-           recode(Med = "Medium")) %>%
+           dplyr::recode(Med = "Medium")) %>%
   filter(!(SpPresent == "Mv" & Species == "Ev") & !(SpPresent == "Ev" & Species == "Mv2")) %>%
-  mutate(Species = recode(Species, Ev = "Elymus", Mv2 = "Microstegium") %>%
+  mutate(Species = dplyr::recode(Species, Ev = "Elymus", Mv2 = "Microstegium") %>%
            factor(levels = c("Microstegium", "Elymus")))
 
 
-#### model summaries ####
+#### statistical tests ####
 
 summary(mv_est_mod1)
-Anova(mv_est_mod1, type = 3)
+mv_est_mod2 <- update(mv_est_mod1, ~.-Litter.g:Competition)
+summary(mv_est_mod2)
+anova(mv_est_mod1, mv_est_mod2, test = "Chi")
 
 summary(ev_est_mod1b)
-Anova(ev_est_mod1b, type = 3)
-Anova(ev_est_mod1b, type = 2)
+ev_est_mod2b <- update(ev_est_mod1b, ~.-Litter:Competition)
+summary(ev_est_mod2b)
+anova(ev_est_mod1b, ev_est_mod2b, test = "Chi") # not significant
+ev_est_mod3b <- update(ev_est_mod2b, ~.-Litter)
+summary(ev_est_mod3b)
+ev_est_mod4b <- update(ev_est_mod2b, ~.-Competition)
+summary(ev_est_mod4b)
+anova(ev_est_mod2b, ev_est_mod3b, test = "Chi")
+anova(ev_est_mod2b, ev_est_mod4b, test = "Chi") # not significant
+ev_est_mod5b <- update(ev_est_mod4b, ~.-Litter)
+anova(ev_est_mod4b, ev_est_mod5b, test = "Chi") # keep litter (4b)
 
 summary(ev_inf_mod1b)
-Anova(ev_inf_mod1b, type = 3)
-Anova(ev_inf_mod1b, type = 2)
+ev_inf_mod2b <- update(ev_inf_mod1b, ~.-Litter:Competition)
+summary(ev_inf_mod2b)
+anova(ev_inf_mod1b, ev_inf_mod2b, test = "Chi") # not significant
+ev_inf_mod3b <- update(ev_inf_mod2b, ~.-Litter)
+summary(ev_inf_mod3b)
+ev_inf_mod4b <- update(ev_inf_mod2b, ~.-Competition)
+summary(ev_inf_mod4b)
+anova(ev_inf_mod2b, ev_inf_mod3b, test = "Chi")
+anova(ev_inf_mod2b, ev_inf_mod4b, test = "Chi")
+# keep both (2b)
 
 summary(mv_bio_mod1)
-Anova(mv_bio_mod1, type = 3)
-Anova(mv_bio_mod1, type = 2)
+mv_bio_mod1b <- update(mv_bio_mod1, ~.-Litter.g:Competition)
+summary(mv_bio_mod1b)
+anova(mv_bio_mod1, mv_bio_mod1b, test = "Chi") # not significant
+mv_bio_mod1c <- update(mv_bio_mod1b, ~.-Litter.g)
+summary(mv_bio_mod1c)
+mv_bio_mod1d <- update(mv_bio_mod1b, ~.-Competition)
+summary(mv_bio_mod1d)
+anova(mv_bio_mod1b, mv_bio_mod1c, test = "Chi")
+anova(mv_bio_mod1b, mv_bio_mod1d, test = "Chi")
+# keep both (1b)
 
 summary(mv_bio_mod2)
-Anova(mv_bio_mod2, type = 3)
-Anova(mv_bio_mod2, type = 2)
+mv_bio_mod2b <- update(mv_bio_mod2, ~.-Litter.g:Competition)
+summary(mv_bio_mod2b)
+anova(mv_bio_mod2, mv_bio_mod2b, test = "Chi") # not significant
+mv_bio_mod2c <- update(mv_bio_mod2b, ~.-Litter.g)
+summary(mv_bio_mod2c)
+mv_bio_mod2d <- update(mv_bio_mod2b, ~.-Competition)
+summary(mv_bio_mod2d)
+anova(mv_bio_mod2b, mv_bio_mod2c, test = "Chi")
+anova(mv_bio_mod2b, mv_bio_mod2d, test = "Chi")
+# keep both (2b)
 
 summary(ev_bio_mod1b)
-Anova(ev_bio_mod1b, type = 3)
-Anova(ev_bio_mod1b, type = 2)
+ev_bio_mod1c <- update(ev_bio_mod1b, ~.-Litter:Competition)
+summary(ev_bio_mod1c)
+anova(ev_bio_mod1b, ev_bio_mod1c, test = "Chi") # not significant
+ev_bio_mod1d <- update(ev_bio_mod1c, ~.-Litter)
+summary(ev_bio_mod1d)
+ev_bio_mod1e <- update(ev_bio_mod1c, ~.-Competition)
+summary(ev_bio_mod1e)
+anova(ev_bio_mod1c, ev_bio_mod1d, test = "Chi")
+anova(ev_bio_mod1c, ev_bio_mod1e, test = "Chi")
+# keep both (1c)
 
 summary(ev_bio_mod2b)
-Anova(ev_bio_mod2b, type = 3)
-Anova(ev_bio_mod2b, type = 2)
+ev_bio_mod2c <- update(ev_bio_mod2b, ~.-Litter:Competition)
+summary(ev_bio_mod2c)
+anova(ev_bio_mod2b, ev_bio_mod2c, test = "Chi") # not significant
+ev_bio_mod2d <- update(ev_bio_mod2c, ~.-Litter)
+summary(ev_bio_mod2d)
+ev_bio_mod2e <- update(ev_bio_mod2c, ~.-Competition)
+summary(ev_bio_mod2e)
+anova(ev_bio_mod2c, ev_bio_mod2d, test = "Chi") # not significant
+anova(ev_bio_mod2c, ev_bio_mod2e, test = "Chi")
+ev_bio_mod2f <- update(ev_bio_mod2d, ~.-Competition)
+anova(ev_bio_mod2d, ev_bio_mod2f, test = "Chi") # keep competition (2d)
 
 
 #### percent changes ####
@@ -260,7 +320,8 @@ EvBioDat %>%
 # continuous
 pred_dat_con <- tibble(Litter.g = rep(seq(0, 3.64, length.out = 100), 2),
                    Competition = rep(c(0, 1), each = 100)) %>%
-  mutate(Planting = ifelse(Competition == 0, "alone", "in competition"))
+  mutate(Planting = dplyr::recode(Competition, "0" = "focal", "1" = "both") %>%
+           fct_rev())
 
 
 #### Mv establishment figure ####
@@ -276,9 +337,12 @@ mv_est_fig <- ggplot(MvEstDat, aes(x = Litter.g, y = PropEstMvDenCor, fill = Pla
   geom_line(data = mv_pred_est, aes(y = pred)) +
   stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", width = 0, position = position_dodge(0.3), linetype = "solid", size = 0.4) +
   stat_summary(fun = "mean", geom = "point", position = position_dodge(0.3), size = 3) +
-  scale_fill_manual(values = col_pal) +
-  scale_linetype_manual(values = line_pal) +
-  scale_shape_manual(values = shape_pal) +
+  annotate(geom = "text",
+           label = expression(paste("litter x ", italic(Elymus), " present: ", italic(P), " = 0.04", sep = "")),
+           x = 1.1, y = 0.95, size = 2.5) +
+  scale_fill_manual(values = col_pal, name = "Species planted") +
+  scale_linetype_manual(values = line_pal, name = "Species planted") +
+  scale_shape_manual(values = shape_pal, name = "Species planted") +
   xlab("Litter (g)") +
   ylab(expression(paste(italic(Microstegium), " establishment", sep = ""))) +
   coord_cartesian(ylim = c(0.6, 0.95)) +
@@ -290,14 +354,12 @@ mv_est_fig <- ggplot(MvEstDat, aes(x = Litter.g, y = PropEstMvDenCor, fill = Pla
 #### Ev establishment figure ####
 
 # significance dataset
-summary(ev_est_mod1b)
-Anova(ev_est_mod1b, type = 3) # no interaction
-summary(update(ev_est_mod1b, .~. -Litter:Competition))
+summary(ev_est_mod4b)
 ev_est_sig <- tibble(start = -0.08,
                      end = c(0.91-0.08, 1.82-0.08, 3.64-0.08),
                      y = c(0.89, 0.915, 0.94),
                      label = c("< 0.001", "0.002", "< 0.001"),
-                     Planting = "alone")
+                     Planting = "focal")
 
 # visualize
 ev_est_fig <- ggplot(EvEstDat, aes(x = Litter.g, y = PropEstEv, fill = Planting, shape = Planting, linetype = Planting)) +
@@ -331,19 +393,16 @@ dev.off()
 #### Ev infection figure ####
 
 # significance dataset
-summary(ev_inf_mod1b)
-Anova(ev_inf_mod1b, type = 3) # no interaction
-Anova(ev_inf_mod1b, type = 2) # competition P-value, same as below
-summary(update(ev_inf_mod1b, .~. -Litter:Competition)) # Litter P-values
+summary(ev_inf_mod2b)
 ev_inf_sig <- tibble(start = -0.08,
                      end = c(0.08, 0.91-0.08, 1.82-0.08, 3.64-0.08),
                      y = c(0.4, 0.72, 0.77, 0.82),
                      label = "< 0.001",
-                     Planting = "alone")
+                     Planting = "focal")
 
 # visualize
-pdf("output/Figure3.pdf", width = 3, height = 3)
-ggplot(EvInfDat, aes(x = Litter.g, y = PropInfEv, fill = Planting, shape = Planting, linetype = Planting)) +
+pdf("output/Figure3.pdf", width = 3.5, height = 3)
+ggplot(EvInfDat, aes(x = Litter.g, y = PropInfEv, fill = Planting, shape = Planting)) +
   stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", width = 0, position = position_dodge(0.3), linetype = "solid", size = 0.4) +
   stat_summary(fun = "mean", geom = "point", position = position_dodge(0.3), size = 3) +
   geom_signif(data = ev_inf_sig,
@@ -351,14 +410,12 @@ ggplot(EvInfDat, aes(x = Litter.g, y = PropInfEv, fill = Planting, shape = Plant
               textsize = 2.5, vjust = -0.2,
               manual = TRUE,
               size = 0.4) +
-  scale_fill_manual(values = col_pal) +
-  scale_linetype_manual(values = line_pal) +
-  scale_shape_manual(values = shape_pal) +
+  scale_fill_manual(values = col_pal, name = "Species\nplanted") +
+  scale_shape_manual(values = shape_pal, name = "Species\nplanted") +
   xlab("Litter (g)") +
   ylab(expression(paste(italic(Elymus), " disease incidence", sep = ""))) +
   coord_cartesian(ylim = c(0, 0.83)) +
-  fig_theme +
-  theme(legend.position = "none")
+  fig_theme
 dev.off()
 
 
@@ -374,18 +431,24 @@ mv_pcbio_fig <- ggplot(MvBioDat, aes(x = Litter.g, y = LogPerCapWeight.g, fill =
   geom_ribbon(data = mv_pred_percap_bio, aes(y = pred, ymin = pred - pred.se, ymax = pred + pred.se), alpha = 0.5, color = NA) +
   geom_line(data = mv_pred_percap_bio, aes(y = pred)) +
   stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", width = 0, position = position_dodge(0.3), linetype = "solid", size = 0.4) +
+  annotate(geom = "text",
+           label = expression(paste(italic(Elymus), " present: ", italic(P), " = 0.04", sep = "")),
+           x = 0.9, y = 0.2, size = 2.5) +
   stat_summary(fun = "mean", geom = "point", position = position_dodge(0.3), size = 3) +
-  scale_fill_manual(values = col_pal) +
-  scale_linetype_manual(values = line_pal) +
-  scale_shape_manual(values = shape_pal) +
+  annotate(geom = "text",
+           label = expression(paste("litter: ", italic(P), " = 0.02", sep = "")),
+           x = 0.4, y = 0.17, size = 2.5) +
+  scale_fill_manual(values = col_pal, name = "Species\nplanted") +
+  scale_linetype_manual(values = line_pal, name = "Species\nplanted") +
+  scale_shape_manual(values = shape_pal, name = "Species\nplanted") +
   xlab("Litter (g)") +
-  ylab(expression(paste("Log ", italic(Microstegium), " plant biomass (g)", sep = ""))) +
+  ylab(expression(paste("Log ", italic(Microstegium), " biomass (g/plant)", sep = ""))) +
   fig_theme +
-  theme(legend.position = "none",
+  theme(legend.position = c(0.8, 0.8),
         axis.title.y = element_text(size = 11, hjust = 2.5))
 
 
-#### Mv total biomass figure ####
+ #### Mv total biomass figure ####
 
 # predicted values
 mv_pred_bio <- pred_dat_con %>%
@@ -398,28 +461,31 @@ mv_bio_fig <- ggplot(MvBioDat, aes(x = Litter.g, y = LogWeight.g, fill = Plantin
   geom_line(data = mv_pred_bio, aes(y = pred)) +
   stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", width = 0, position = position_dodge(0.3), linetype = "solid", size = 0.4) +
   stat_summary(fun = "mean", geom = "point", position = position_dodge(0.3), size = 3) +
+  annotate(geom = "text",
+           label = expression(paste(italic(Elymus), " present: ", italic(P), " = 0.001", sep = "")),
+           x = 2.75, y = 3.77, size = 2.5) +
+  annotate(geom = "text",
+           label = expression(paste("litter: ", italic(P), " = 0.02", sep = "")),
+           x = 3.3, y = 3.75, size = 2.5) +
   scale_fill_manual(values = col_pal) +
   scale_linetype_manual(values = line_pal) +
   scale_shape_manual(values = shape_pal) +
   xlab("Litter (g)") +
-  ylab(expression(paste("Log total ", italic(Microstegium), " biomass (g)", sep = ""))) +
+  ylab(expression(paste("Log ", italic(Microstegium), " biomass (g/pot)", sep = ""))) +
   fig_theme +
   theme(legend.position = "none",
-        axis.title.y = element_text(size = 11, hjust = 3))
+        axis.title.y = element_text(size = 11, hjust = -7))
 
 
 #### Ev plant biomass ####
 
 # significance dataset
-summary(ev_bio_mod2b)
-Anova(ev_bio_mod2b, type = 3) # no interaction
-Anova(ev_bio_mod2b, type = 2) # competition P-value
-summary(update(ev_bio_mod2b, .~. -Litter:Competition)) # same
+summary(ev_bio_mod2d)
 ev_pcbio_sig <- tibble(start = -0.08,
                      end = 0.08,
                      y = -1.5,
                      label = "< 0.001",
-                     Planting = "alone")
+                     Planting = "focal")
 
 # visualize
 ev_pcbio_fig <- ggplot(EvBioDat, aes(x = Litter.g, y = LogPerCapWeight.g, fill = Planting, shape = Planting, linetype = Planting)) +
@@ -434,7 +500,7 @@ ev_pcbio_fig <- ggplot(EvBioDat, aes(x = Litter.g, y = LogPerCapWeight.g, fill =
   scale_linetype_manual(values = line_pal) +
   scale_shape_manual(values = shape_pal) +
   xlab("Litter (g)") +
-  ylab(expression(paste("Log  ", italic(Elymus), " plant biomass (g)", sep = ""))) +
+  ylab(expression(paste("Log ", italic(Elymus), " biomass (g/plant)", sep = ""))) +
   coord_cartesian(ylim = c(-4.5, -1.4)) +
   fig_theme +
   theme(legend.position = "none")
@@ -443,15 +509,12 @@ ev_pcbio_fig <- ggplot(EvBioDat, aes(x = Litter.g, y = LogPerCapWeight.g, fill =
 #### Ev total biomass ####
 
 # significance dataset
-summary(ev_bio_mod1b)
-Anova(ev_bio_mod1b, type = 3) # no interaction
-Anova(ev_bio_mod1b, type = 2) # competition P-value, same as below
-summary(update(ev_bio_mod1b, .~. -Litter:Competition)) # litter P-values
+summary(ev_bio_mod1c)
 ev_bio_sig <- tibble(start = -0.07,
                        end = c(0.07, 0.91-0.07, 1.82-0.07),
                        y = c(2.3, 2.7, 3.1),
                        label = c("< 0.001", "0.001", "0.05"),
-                       Planting = "alone")
+                       Planting = "focal")
 
 # visualize
 ev_bio_fig <- ggplot(EvBioDat, aes(x = Litter.g, y = LogWeight.g, fill = Planting, shape = Planting, linetype = Planting)) +
@@ -466,7 +529,7 @@ ev_bio_fig <- ggplot(EvBioDat, aes(x = Litter.g, y = LogWeight.g, fill = Plantin
   scale_linetype_manual(values = line_pal) +
   scale_shape_manual(values = shape_pal) +
   xlab("Litter (g)") +
-  ylab(expression(paste("Log total  ", italic(Elymus), " biomass (g)", sep = ""))) +
+  ylab(expression(paste("Log ", italic(Elymus), " biomass (g/pot)", sep = ""))) +
   coord_cartesian(ylim = c(-0.8, 3.2)) +
   fig_theme +
   theme(legend.position = "none")
@@ -491,12 +554,12 @@ ggplot(estDatL, aes(x = Date2, y = Establishment, fill = Planting, shape = Plant
   geom_vline(aes(xintercept = EstDate), linetype = "dotted", size = 0.2) +
   stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", size = 0.3, width = 0, linetype = "solid") +
   stat_summary(fun = "mean", geom = "line", size = 0.5) +
-  stat_summary(fun = "mean", geom = "point", aes(color = Planting)) +
+  stat_summary(fun = "mean", geom = "point") +
   facet_grid(Species ~ Litter, scales = "free_y", switch = "y", ) +
-  scale_shape_manual(values = shape_pal) +
-  scale_fill_manual(values = col_pal) +  
-  scale_color_manual(values = col_pal) +  
-  scale_linetype_manual(values = line_pal) +  
+  scale_shape_manual(values = shape_pal, name = "Species planted") +
+  scale_fill_manual(values = col_pal, name = "Species planted") +  
+  scale_color_manual(values = col_pal, name = "Species planted") +  
+  scale_linetype_manual(values = line_pal, name = "Species planted") +  
   xlab("Date") +
   ylab("Plants per pot") +
   ggtitle("Litter") +
@@ -513,16 +576,22 @@ dev.off()
 #### Mv total establishment ####
 
 pdf("output/FigureS2.pdf", width = 3, height = 3)
-ggplot(MvEstDat, aes(x = Litter.g, y = GermMv, fill = Planting, shape = Planting, linetype = Planting)) +
-  stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", width = 0, position = position_dodge(0.3), linetype = "solid", size = 0.4) +
-  stat_summary(fun = "mean", geom = "point", position = position_dodge(0.3), size = 3) +
-  scale_fill_manual(values = col_pal) +
-  scale_linetype_manual(values = line_pal) +
-  scale_shape_manual(values = shape_pal) +
+MvEstDat %>%
+  group_by(Planting, Litter.g) %>%
+  summarise(Mv = mean(GermMv),
+            lower = mean_cl_boot(GermMv)$ymin,
+            upper = mean_cl_boot(GermMv)$ymax) %>%
+ggplot(aes(x = Litter.g, y = Mv, fill = Planting, shape = Planting)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper),
+                position = position_dodge(0.3), size = 0.4, width = 0) +
+  geom_point(position = position_dodge(0.3), size = 3) +
+  scale_fill_manual(values = col_pal, name = "Species\nplanted") +
+  scale_linetype_manual(values = line_pal, name = "Species\nplanted") +
+  scale_shape_manual(values = shape_pal, name = "Species\nplanted") +
   xlab("Litter (g)") +
   ylab(expression(paste(italic(Microstegium), " plants", sep = ""))) +
   fig_theme +
-  theme(legend.position = c(0.77, 0.15),
+  theme(legend.position = c(0.8, 0.2),
         legend.margin = margin(0, 0, 0, 0))
 dev.off()
 
