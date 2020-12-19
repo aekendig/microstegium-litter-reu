@@ -35,12 +35,12 @@ fig_theme <- theme_bw() +
   theme(panel.background = element_blank(),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
-        axis.text = element_text(size = 9, color = "black"),
-        axis.title = element_text(size = 11),
-        legend.text = element_text(size = 9),
-        legend.title = element_text(size = 9),
+        axis.text = element_text(size = 7, color = "black"),
+        axis.title = element_text(size = 9),
+        legend.text = element_text(size = 7),
+        legend.title = element_text(size = 7),
         strip.background = element_blank(),
-        strip.text = element_text(size = 9))
+        strip.text = element_text(size = 8))
 
 col_pal = c("#92B851","#44A5B6")
 line_pal = c("solid", "dashed")
@@ -347,7 +347,7 @@ mv_est_fig <- ggplot(MvEstDat, aes(x = Litter.g, y = PropEstMvDenCor, fill = Pla
   ylab(expression(paste(italic(Microstegium), " establishment", sep = ""))) +
   coord_cartesian(ylim = c(0.6, 0.95)) +
   fig_theme +
-  theme(legend.position = c(0.25, 0.15),
+  theme(legend.position = c(0.2, 0.2),
         legend.margin = margin(0, 0, 0, 0))
 
 
@@ -380,16 +380,6 @@ ev_est_fig <- ggplot(EvEstDat, aes(x = Litter.g, y = PropEstEv, fill = Planting,
   theme(legend.position = "none")
 
 
-#### combined establishment figure ####
-
-pdf("output/Figure2.pdf", width = 3, height = 6)
-plot_grid(mv_est_fig, ev_est_fig,
-          nrow = 2,
-          labels = c("a", "b"),
-          label_size = 11)
-dev.off()
-
-
 #### Ev infection figure ####
 
 # significance dataset
@@ -401,8 +391,7 @@ ev_inf_sig <- tibble(start = -0.08,
                      Planting = "focal")
 
 # visualize
-pdf("output/Figure3.pdf", width = 3.5, height = 3)
-ggplot(EvInfDat, aes(x = Litter.g, y = PropInfEv, fill = Planting, shape = Planting)) +
+ev_inf_fig <- ggplot(EvInfDat, aes(x = Litter.g, y = PropInfEv, fill = Planting, shape = Planting)) +
   stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", width = 0, position = position_dodge(0.3), linetype = "solid", size = 0.4) +
   stat_summary(fun = "mean", geom = "point", position = position_dodge(0.3), size = 3) +
   geom_signif(data = ev_inf_sig,
@@ -415,7 +404,18 @@ ggplot(EvInfDat, aes(x = Litter.g, y = PropInfEv, fill = Planting, shape = Plant
   xlab("Litter (g)") +
   ylab(expression(paste(italic(Elymus), " disease incidence", sep = ""))) +
   coord_cartesian(ylim = c(0, 0.83)) +
-  fig_theme
+  fig_theme +
+  theme(legend.position = "none")
+
+
+
+#### combined establishment and infection figures ####
+
+pdf("output/Fig2.pdf", width = 3, height = 8)
+plot_grid(mv_est_fig, ev_est_fig, ev_inf_fig,
+          nrow = 3,
+          labels = c("a", "b", "c"),
+          label_size = 10)
 dev.off()
 
 
@@ -444,8 +444,8 @@ mv_pcbio_fig <- ggplot(MvBioDat, aes(x = Litter.g, y = LogPerCapWeight.g, fill =
   xlab("Litter (g)") +
   ylab(expression(paste("Log ", italic(Microstegium), " biomass (g/plant)", sep = ""))) +
   fig_theme +
-  theme(legend.position = c(0.8, 0.8),
-        axis.title.y = element_text(size = 11, hjust = 2.5))
+  theme(legend.position = c(0.8, 0.77),
+        axis.title.y = element_text(size = 9, hjust = -0.5))
 
 
  #### Mv total biomass figure ####
@@ -474,7 +474,7 @@ mv_bio_fig <- ggplot(MvBioDat, aes(x = Litter.g, y = LogWeight.g, fill = Plantin
   ylab(expression(paste("Log ", italic(Microstegium), " biomass (g/pot)", sep = ""))) +
   fig_theme +
   theme(legend.position = "none",
-        axis.title.y = element_text(size = 11, hjust = -7))
+        axis.title.y = element_text(size = 9, hjust = 0.3))
 
 
 #### Ev plant biomass ####
@@ -536,12 +536,12 @@ ev_bio_fig <- ggplot(EvBioDat, aes(x = Litter.g, y = LogWeight.g, fill = Plantin
 
 
 #### combined biomass figure ####
-pdf("output/Figure4.pdf", width = 6, height = 6)
+pdf("output/Fig3.pdf", width = 6, height = 5.3)
 plot_grid(mv_pcbio_fig, mv_bio_fig,
           ev_pcbio_fig, ev_bio_fig,
           nrow = 2,
           labels = letters[1:4],
-          label_size = 11)
+          label_size = 10)
 dev.off()
 
 
@@ -575,7 +575,7 @@ dev.off()
 
 #### Mv total establishment ####
 
-pdf("output/FigureS2.pdf", width = 3, height = 3)
+pdf("output/FigureS2.pdf", width = 3, height = 2.7)
 MvEstDat %>%
   group_by(Planting, Litter.g) %>%
   summarise(Mv = mean(GermMv),
