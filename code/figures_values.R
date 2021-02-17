@@ -14,11 +14,7 @@ library(cowplot)
 
 # import models
 load("output/mv_establishment_model.rda")
-load("output/ev_establishment_model.rda")
-load("output/ev_infection_model.rda")
 load("output/mv_percap_bio_model.rda")
-load("output/ev_percap_bio_model.rda")
-load("output/mv_relative_abundance_model.rda")
 
 # import data
 MvEstDat <- read_csv("intermediate-data/mv_establishment_data.csv")
@@ -244,7 +240,7 @@ mv_est_fig <- ggplot(MvEstDat, aes(x = Litter.g, y = PropEstMvDenCor, fill = Pla
   stat_summary(fun.data = "mean_cl_boot", geom = "errorbar", width = 0, position = position_dodge(0.3), linetype = "solid", size = 0.4) +
   stat_summary(fun = "mean", geom = "point", position = position_dodge(0.3), size = 3) +
   annotate(geom = "text",
-           label = expression(paste("litter x competition:", italic(P), " = 0.04", sep = "")),
+           label = expression(paste("litter x competition: ", italic(P), " = 0.04", sep = "")),
            x = 0.9, y = 0.91, size = 2.5) +
   scale_fill_manual(values = col_pal, name = "Planting treatment") +
   scale_linetype_manual(values = line_pal, name = "Planting treatment") +

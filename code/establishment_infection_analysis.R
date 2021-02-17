@@ -194,9 +194,8 @@ anova(ev_inf_mod3, ev_inf_mod5, test = "Chi") # no
 
 # save models
 save(mv_est_mod1, file = "./output/mv_establishment_model.rda")
-save(ev_est_mod4, file = "./output/ev_establishment_model.rda")
-save(ev_inf_mod3, file = "./output/ev_infection_model.rda")
 
-write_csv(tidy(mv_est_mod1), "./output/mv_establishment_model.csv")
-write_csv(tidy(ev_est_mod4), "./output/ev_establishment_model.csv")
-write_csv(tidy(ev_inf_mod3), "./output/ev_infection_model.csv")
+write_csv(tidy(mv_est_mod1), "./output/mv_establishment_full_model.csv")
+write_csv(tidy(mv_abu_mod1), "./output/mv_abundance_full_model.csv")
+write_csv(tidy(ev_est_mod2), "./output/ev_establishment_full_model.csv")
+write_csv(tidy(ev_inf_mod2), "./output/ev_infection_full_model.csv")

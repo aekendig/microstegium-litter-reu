@@ -220,12 +220,10 @@ anova(ev_bio_mod4, ev_bio_mod5, test = "F") # no
 
 #### output ####
 save(mv_bio_mod3, file = "output/mv_percap_bio_model.rda")
-save(rel_mod2, file = "output/mv_relative_abundance_model.rda")
-save(ev_bio_mod4, file = "output/ev_percap_bio_model.rda")
 
-write_csv(tidy(mv_bio_mod3), "output/mv_percap_bio_model.csv")
-write_csv(tidy(rel_mod2), "output/mv_relative_abundance_model.csv")
-write_csv(tidy(ev_bio_mod4), "output/ev_percap_bio_model.csv")
+write_csv(tidy(mv_bio_mod1), "output/mv_percap_bio_full_model.csv")
+write_csv(tidy(rel_mod2), "output/mv_relative_abundance_full_model.csv")
+write_csv(tidy(ev_bio_mod2), "output/ev_percap_bio_full_model.csv")
 
 write_csv(MvBioDat, "intermediate-data/mv_biomass_data.csv")
 write_csv(EvBioDat, "intermediate-data/ev_biomass_data.csv")
