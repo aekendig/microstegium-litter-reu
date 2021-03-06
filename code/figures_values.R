@@ -204,11 +204,12 @@ EvBioDat %>%
 
 # relative abundance
 MvBioDat %>%
-  filter(Litter == "None") %>%
+  filter(Litter == "None" & SpPresent == "Ev+Mv") %>%
   summarise(est = mean(Weight.g/TotalWeight.g))
 
 # relative abundance litter effect
 MvBioDat %>%
+  filter(SpPresent == "Ev+Mv") %>%
   group_by(Litter) %>%
   summarise(est = mean(Weight.g/TotalWeight.g)) %>%
   ungroup() %>%
@@ -301,7 +302,7 @@ plot_grid(mv_est_fig, ev_est_fig, ev_inf_fig,
 dev.off()
 
 
-#### Mv per capita biomass figure ####
+#### Mv plant biomass figure ####
 
 # predicted values
 mv_pred_percap_bio <- pred_dat_con %>%
@@ -324,7 +325,7 @@ mv_pcbio_fig <- ggplot(MvBioDat, aes(x = Litter.g, y = LogPerCapWeight.g, fill =
   scale_linetype_manual(values = line_pal, name = "Planting treatment") +
   scale_shape_manual(values = shape_pal, name = "Planting treatment") +
   xlab("Litter (g)") +
-  ylab(expression(paste(italic(M.), " ", italic( vimineum), " biomass (ln[g/plant])", sep = ""))) +
+  ylab(expression(paste(italic(M.), " ", italic( vimineum), " plant biomass (ln g)", sep = ""))) +
   fig_theme +
   theme(legend.position = c(0.8, 0.83),
         legend.margin = margin(0, 0, 0, 0))
@@ -342,7 +343,7 @@ x = 0.65, y = -1.4, size = 2.5) +
   scale_linetype_manual(values = line_pal) +
   scale_shape_manual(values = shape_pal) +
   xlab("Litter (g)") +
-  ylab(expression(paste(italic(E.), " ", italic( virginicus), " biomass (ln[g/plant])", sep = ""))) +
+  ylab(expression(paste(italic(E.), " ", italic( virginicus), " plant biomass (ln g)", sep = ""))) +
   coord_cartesian(ylim = c(-4.5, -1.4)) +
   fig_theme +
   theme(legend.position = "none")

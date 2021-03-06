@@ -65,14 +65,16 @@ MvBioDat <- dat2 %>%
   left_join(totBioDat) %>%
   filter(WeighedSp == "Mv" & SpPresent != "Ev") %>%
   full_join(select(MvEstDat, TrtID, GermMv)) %>% 
-  mutate(LogPerCapWeight.g = log(Weight.g/GermMv)) %>%
+  mutate(PerCapWeight.g = Weight.g/GermMv,
+         LogPerCapWeight.g = log(PerCapWeight.g)) %>%
   filter(Shade == "no")
 
 EvBioDat <- dat2 %>%
   left_join(totBioDat) %>%
   filter(WeighedSp == "Ev" & SpPresent != "Mv") %>%
   full_join(select(EvEstDat, TrtID, GermEv)) %>%
-  mutate(LogPerCapWeight.g = log(Weight.g/GermEv))
+  mutate(PerCapWeight.g = Weight.g/GermEv,
+         LogPerCapWeight.g = log(PerCapWeight.g))
 
 # check total weight
 MvBioDat %>%
@@ -220,6 +222,7 @@ anova(ev_bio_mod4, ev_bio_mod5, test = "F") # no
 
 #### output ####
 save(mv_bio_mod3, file = "output/mv_percap_bio_model.rda")
+save(ev_bio_mod2, file = "output/ev_percap_bio_full_model.rda")
 
 write_csv(tidy(mv_bio_mod1), "output/mv_percap_bio_full_model.csv")
 write_csv(tidy(rel_mod2), "output/mv_relative_abundance_full_model.csv")
