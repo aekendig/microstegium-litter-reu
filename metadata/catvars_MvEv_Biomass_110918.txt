@@ -1,0 +1,20 @@
+attributeName	code	definition
+Treatment	None	no litter was added to the pot
+Treatment	Low	low litter was added to the pot (0.91 g/pot; 50 g/m2)
+Treatment	Med	medium litter was added to the pot (1.82 g/pot; 100 g/m2)
+Treatment	High	high litter was added to the pot (3.64 g/pot; 200 g/m2)
+Treatment	Shade	medium litter was added to the pot (1.82 g/pot; 100 g/m2) and the pot was placed under an additional shade tent. This treatment was omitted from the manuscript.
+SpPresent	Mv	fifty seeds of Microstegium vimineum were planted in the pot.
+SpPresent	Ev	fifty seeds of Elymus virginicus were planted in the pot.
+SpPresent	Ev+Mv	fifty seeds each of Microstegium vimineum and Elymus virginicus were planted in the pot.
+WeighedSp	Mv	Weight_g corresponds to Microstegium vimineum
+WeighedSp	Ev	Weight_g corresponds to Elymus virginicus
+InitialsWeighed	AK	Amy Kendig
+InitialsSorted	CS	Callie San Antonio
+InitialsSorted	PR	Penny Reif
+InitialsSorted	DN	David Notman
+InitialsSorted	ZC	Sobia Chanda
+InitialsSorted	AK	Amy Kendig
+InitialsSorted	PR+DN	Penny Reif and David Notman
+Notes	has some mold	plants had some mold when removed from 4 degrees C for evaluating foliar lesions
+Notes	intentionally not measured	biomass was not measured in this pot because it was accidentally dropped

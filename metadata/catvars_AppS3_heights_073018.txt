@@ -1,0 +1,11 @@
+attributeName	code	definition
+Species	Mv	Microstegium vimineum
+Species	Ev	Elymus virginicus
+Species	Et	Eragrostis trichodes
+Species	Pc	Dichanthelium (Panicum) clandestinum
+Species	Cc	Calamagrostis canadensis
+Species	Gs	Glyceria striata
+Litter	Y	Yes (litter was added to pot)
+Litter	N	No (litter was not added to pot)
+Dry	Y	Yes (pot received dry/low moisture treatment)
+Dry	N	No (pot received high moisture treatment)

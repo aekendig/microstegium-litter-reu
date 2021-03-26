@@ -1,0 +1,1585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="edi.189.1" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0  https://nis.lternet.edu/schemas/EML/eml-2.2.0/xsd/eml.xsd" system="edi">
+  <access authSystem="https://pasta.edirepository.org/authentication" order="allowFirst" scope="document">
+    <allow>
+      <principal>uid=aekendig,o=EDI,dc=edirepository,dc=org</principal>
+      <permission>all</permission>
+    </allow>
+    <allow>
+      <principal>public</principal>
+      <permission>read</permission>
+    </allow>
+  </access>
+  <dataset>
+    <title>Invasive grass litter suppresses native species and promotes disease</title>
+    <creator>
+      <individualName>
+        <givenName>Liliana</givenName>
+        <surName>Benitez</surName>
+      </individualName>
+      <organizationName>New College of Florida</organizationName>
+      <electronicMailAddress>liliana.benitez16@ncf.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0003-2648-6515</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Ashish</givenName>
+        <surName>Adhikari</surName>
+      </individualName>
+      <organizationName>University of Florida</organizationName>
+      <electronicMailAddress>adhikariashish@ufl.edu</electronicMailAddress>
+    </creator>
+    <pubDate>2021-03-26</pubDate>
+    <abstract>
+      <para>Plant litter can alter ecosystems and promote plant invasions by changing resource acquisition, depositing toxins, and transmitting microorganisms to living plants. Transmission of microorganisms from invasive litter to live plants may gain importance as invasive plants accumulate pathogens over time since introduction. It is unclear, however, if invasive plant litter affects native plant communities by promoting disease. Microstegium vimineum is an invasive grass that suppresses native populations, in part through litter production, and has accumulated leaf spot diseases since its introduction to the U.S. In a greenhouse experiment, we evaluated how M. vimineum litter and accumulated pathogens mediated resource competition with the native grass Elymus virginicus. Resource competition reduced biomass of both species and live M. vimineum increased disease incidence on the native species. Microstegium vimineum litter also promoted disease on the native species, suppressed establishment of both species, and reduced biomass of M. vimineum. Nonetheless, interference competition from litter had a stronger negative effect on the native species, increasing the relative abundance of M. vimineum. Altogether, invasive grass litter suppressed both species, ultimately favoring the invasive species in competition, and increased disease incidence on the native species.</para>
+    </abstract>
+    <keywordSet>
+      <keyword>litter</keyword>
+      <keyword>competition</keyword>
+      <keyword>invasive species</keyword>
+      <keyword>disease</keyword>
+      <keywordThesaurus>LTER</keywordThesaurus>
+    </keywordSet>
+    <additionalInfo>
+      <para>To run analyses, create an RStudio project with the following folders: code, data, intermediate-data, output. The code (files ending in .R) and data (files ending in .csv) from this archive should be placed in their respective folders. Run 'establishment_data_processing.R' first. Either 'biomass_analysis.R' or 'establishment_infection_analysis.R' can be run next to generate statistical models for biomass, establishment, and disease incidence. Run 'residual_infection_analysis.R' to generate statistical models for relationships between disease incidence and establishment or biomass. Run 'figures_values.R' to generate figures in manuscript. Run 'appendixS3.R' to generate figures in Appendix S3 of manuscript. </para>
+    </additionalInfo>
+    <intellectualRights>
+      <para>This information is released under the Creative Commons license - Attribution - CC BY (https://creativecommons.org/licenses/by/4.0/). The consumer of these data (\"Data User\" herein) is required to cite it appropriately in any publication that results from its use. The Data User should realize that these data may be actively used by others for ongoing research and that coordination may be necessary to prevent duplicate publication. The Data User is urged to contact the authors of these data if any questions about methodology or results occur. Where appropriate, the Data User is encouraged to consider collaboration or co-authorship with the authors. The Data User should realize that misinterpretation of data may occur if used out of context of the original study. While substantial efforts are made to ensure the accuracy of data and associated documentation, complete accuracy of data sets cannot be guaranteed. All data are made available \"as is.\" The Data User should be aware, however, that data are updated periodically and it is the responsibility of the Data User to check for new versions of the data. The data authors and the repository where these data were obtained shall not be liable for damages resulting from any use or misinterpretation of the data. Thank you.
+</para>
+    </intellectualRights>
+    <coverage>
+      <geographicCoverage>
+        <geographicDescription>Gainesville, FL, USA</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-82.36</westBoundingCoordinate>
+          <eastBoundingCoordinate>-82.36</eastBoundingCoordinate>
+          <northBoundingCoordinate>29.64</northBoundingCoordinate>
+          <southBoundingCoordinate>29.64</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+      <temporalCoverage>
+        <rangeOfDates>
+          <beginDate>
+            <calendarDate>2018-05-09</calendarDate>
+          </beginDate>
+          <endDate>
+            <calendarDate>2018-11-04</calendarDate>
+          </endDate>
+        </rangeOfDates>
+      </temporalCoverage>
+    </coverage>
+    <maintenance>
+      <description>completed</description>
+    </maintenance>
+    <contact>
+      <individualName>
+        <givenName>Amy</givenName>
+        <givenName>E</givenName>
+        <surName>Kendig</surName>
+      </individualName>
+      <organizationName>University of Florida</organizationName>
+      <electronicMailAddress>aekendig@gmail.com</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0002-2774-1795</userId>
+    </contact>
+    <methods>
+      <methodStep>
+        <description>
+          <para>In May 2018, we collected litter from Big Oaks National Wildlife Refuge in Madison, IN, USA (38.965630, -85.364500) and transported it to the University of Florida in Gainesville, FL, USA. Microstegium vimineum has a mixed mating system of cleistogamous (obligately selfed, within leaf sheaths) and chasmogamous (potentially outcrossed, open) seeds (Baker and Dyer 2011). To minimize germination of cleistogamous seeds, we hand-picked them along with any non-M. vimineum material from the litter. We created three litter treatments within the range of litter observed at BONWR (Appendix S1): 0.91 g/pot (50 g/m2, “low”), 1.82 g/pot (100 g/m2, “medium”), 3.64 g/pot (200 g/m2, “high”), and a control treatment without litter (“none”). To enhance sporulation of pathogenic fungi in the litter, we incubated the litter for 56 hours at room temperature in one-gallon plastic bags with a paper towel saturated with deionized water. We collected M. vimineum seeds from BONWR in fall 2015 and purchased E. virginicus seeds from Prairie Moon Nursery (Winona, MN, USA) in spring 2018. On June 15, 2018, we planted three treatments: 50 seeds of E. virginicus, 50 seeds of M. vimineum (both “alone”; i.e., intraspecific competition), and 50 seeds of each (“in competition”; i.e., inter- and intraspecific competition), into 1 L (15.2 cm diameter) plastic pots filled with Metromix 930 growing medium (Sungro Horticulture, Agawam, MA, USA) saturated with tap water. We added the litter treatments to pots, creating twelve treatments (four litter treatments crossed with three planting treatments) with six replicates each. The following day, we topped each pot with a clear plastic sheet (50.8 cm width, 17.8 cm height; 0.005 Grafix Dura-Lar® film, Maple Heights, OH) formed into a cone to increase humidity and potentially enhance fungal sporulation. Cones were opened to cylinders as plants outgrew them. We placed pots under shade tents in the greenhouse to reduce heat stress (photosynthetically active radiation: 224 µMolm-2s-1 +/- 18 µMol m-2s-1), haphazardly rearranged them across two greenhouse benches weekly, and watered them daily. To measure establishment, we counted the number of plants per pot, and to measure disease incidence, we counted the proportion of plants per pot with at least two foliar lesions. We measured establishment and disease incidence weekly for six weeks. Some M. vimineum seedlings grew in E. virginicus-only pots, likely from cleistogamous seeds left in the litter despite our attempts to remove them. We counted and removed these seedlings. After 10 weeks, we cut plant stems at the soil surface and stored each species from each pot in a separate paper bag at 4°C. We then counted the number of M. vimineum plants and E. virginicus tillers (individuals were not identifiable) per pot, and the proportion with two or more foliar lesions. Because M. vimineum had few lesions, we searched for a maximum of ten minutes per M. vimineum per pot. Plants were then oven-dried at 60°C to a constant mass and weighed.</para>
+          <para>Data files and code referring to AppS3 correspond to a second experiment that is presented in Appendix S3 of the manuscript. We performed a greenhouse experiment to test the effects of moisture on litter-induced disease of Microstegium vimineum and to assess the potential for Microstegium litter to promote disease symptoms on five native species: Calamagrostis canadensis, Dichanthelium clandestinum, Elymus virginicus, Eragrostis trichodes, and Glyceria striata. We refer to each species by its genus for the remainder of the Methods. We purchased seeds of Calamagrostis, Elymus, Eragrostis, and Glyceria from Prairie Moon Nursery (Winona, MN, USA) in spring 2018 and we purchased Dichanthelium seeds from Sheffield’s Seed Company (Locke, NY, USA) in spring 2018. The Microstegium seeds and litter were collected from Big Oaks National Wildlife Refuge (Madison, IN, USA), as described above. Additional litter was collected from the same field site in June 2018 and homogenized with the litter collected in May 2018. In contrast with the experiment described in the main text, we did not remove non¬-Microstegium litter or cleistogamous Microstegium seeds from the litter. Seeds and litter were stored at 4℃ until the start of the experiment. The experimental design included five replicate pots for each treatment. There were three treatments for Microstegium—no litter, litter with low moisture, and litter with high moisture—and two treatments for the native species—no litter and litter with high moisture. We planted each species in its own pot (1 L, 6 in. diameter) using Metromix 360 growing medium (Sungro Horticulture, Agawam, MA, USA) saturated with tap water. We used data from a pilot experiment to determine how many seeds to add for each species and when to plant them so that they would be approximately the same height and density when litter was added to the pots. This goal was motivated by the assumption that plant height and density affect the distance fungal spores must travel from litter to live plants for disease transmission to occur. We planted 60 Glyceria seeds per pot 24 days prior to litter addition. We planted 1000 Calamagrostis seeds, 80 Dichanthelium seeds, 60 Elymus seeds, 80 Eragrostis seeds, and 40 Microstegium seeds per pot 20 days prior to litter addition. Approximately seven days post planting, we thinned Elymus and Microstegium pots to 20–25 individuals each. Calamagrostis and Glyceria pots were thinned to space out individuals and the other two native species were not thinned. On July 26, 2018, we filled one-gallon plastic bags with 9.5 g of Microstegium litter and three paper towels saturated with deionized water (one bag per experimental pot). We stored the bags in a growth chamber at 24°C and a 16/8-hour light/dark cycle for 89.5 hours prior to being added to experiment pots. Bags were checked daily and water was added as needed. We measured the heights of five plants per pot from the soil surface in the 24 hours leading up to litter addition. We attached 13 in. x 20 in. clear plastic cylindrical humidity chambers (material described above) around each pot. Just prior to adding litter to pots with the high moisture treatment, we misted plants with tap water for five seconds. We poured the litter from each plastic bag onto a pot, added tap water to the empty bag, shook it, and poured it on the pot. For the high moisture treatment, we misted plants with tap water for five seconds after litter had been added to all pots and two more times afterwards at two-hour intervals. High moisture pots were then misted every two hours and low moisture pots were misted once per day for the second and third days from 9:30 AM to 1:30 PM. We recorded whether water droplets were observed on leaf surfaces in the litter addition treatments ten times over the first 45 hours of the experiment. In the first 19.4 hours, pots with any water droplets were recorded, but after this time, pots were only recorded as having water droplets if droplets were observed on at least three leaves. On September 13, 2018, plant stems were clipped at the soil surface with scissors and stored at 4°oC in paper bags. Over the following month, we examined plants for foliar lesions for one minute per bag or until lesions were found. Pots were considered infected if at least two brown lesions were observed on leaf surfaces. Black spots were observed but were not counted as lesions. Because Microstegium germinated from cleistogamous seeds in the litter, we also noted whether lesions were observed on their leaf surfaces.&#13;
+</para>
+        </description>
+      </methodStep>
+    </methods>
+    <project>
+      <title>No project title to report</title>
+      <personnel>
+        <individualName>
+          <givenName>Keith</givenName>
+          <surName>Clay</surName>
+        </individualName>
+        <organizationName>Tulane University</organizationName>
+        <electronicMailAddress>clay@tulane.edu</electronicMailAddress>
+        <userId directory="https://orcid.org">https://orcid.org/0000-0002-3956-0887</userId>
+        <role>Principal Investigator</role>
+      </personnel>
+      <funding>USDA 2017-67013-26870</funding>
+      <relatedProject>
+        <title>No project title to report</title>
+        <personnel>
+          <individualName>
+            <givenName>Philip</givenName>
+            <givenName>F</givenName>
+            <surName>Harmon</surName>
+          </individualName>
+          <organizationName>University of Florida</organizationName>
+          <electronicMailAddress>pfharmon@ufl.edu</electronicMailAddress>
+          <userId directory="https://orcid.org">https://orcid.org/0000-0003-2288-5148</userId>
+          <role>Principal Investigator</role>
+        </personnel>
+        <funding>USDA 2017-67013-26870</funding>
+      </relatedProject>
+      <relatedProject>
+        <title>No project title to report</title>
+        <personnel>
+          <individualName>
+            <givenName>Robert</givenName>
+            <givenName>D</givenName>
+            <surName>Holt</surName>
+          </individualName>
+          <organizationName>University of Florida</organizationName>
+          <electronicMailAddress>rdholt@ufl.edu</electronicMailAddress>
+          <role>Principal Investigator</role>
+        </personnel>
+        <funding>USDA 2017-67013-26870</funding>
+      </relatedProject>
+      <relatedProject>
+        <title>No project title to report</title>
+        <personnel>
+          <individualName>
+            <givenName>Erica</givenName>
+            <givenName>M</givenName>
+            <surName>Goss</surName>
+          </individualName>
+          <organizationName>University of Florida</organizationName>
+          <electronicMailAddress>emgoss@ufl.edu</electronicMailAddress>
+          <userId directory="https://orcid.org">https://orcid.org/0000-0003-3512-2107</userId>
+          <role>Principal Investigator</role>
+        </personnel>
+        <funding>USDA 2017-67013-26870</funding>
+      </relatedProject>
+      <relatedProject>
+        <title>No project title to report</title>
+        <personnel>
+          <individualName>
+            <givenName>S</givenName>
+            <givenName>Luke</givenName>
+            <surName>Flory</surName>
+          </individualName>
+          <organizationName>University of Florida</organizationName>
+          <electronicMailAddress>flory@ufl.edu</electronicMailAddress>
+          <userId directory="https://orcid.org">https://orcid.org/0000-0003-3336-8613</userId>
+          <role>Principal Investigator</role>
+        </personnel>
+        <funding>USDA 2017-67013-26870</funding>
+      </relatedProject>
+    </project>
+    <dataTable>
+      <entityName>App. S3 height data</entityName>
+      <entityDescription>heights of plants in Appendix S3 experiment</entityDescription>
+      <physical>
+        <objectName>AppS3_heights_073018.csv</objectName>
+        <size unit="bytes">2421</size>
+        <authentication method="MD5">52fe784ec628adaba07e4202093b439a</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\r\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>Date</attributeName>
+          <attributeDefinition>date that data were collected</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>mm/dd/yy</formatString>
+              <dateTimeDomain/>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>PotID</attributeName>
+          <attributeDefinition>ID of pot (do not indicate blocking)</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                  <maximum exclusive="false">5</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Species</attributeName>
+          <attributeDefinition>species planted in pot</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>Mv</code>
+                    <definition>Microstegium vimineum</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Ev</code>
+                    <definition>Elymus virginicus</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Et</code>
+                    <definition>Eragrostis trichodes</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Pc</code>
+                    <definition>Dichanthelium (Panicum) clandestinum</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Cc</code>
+                    <definition>Calamagrostis canadensis</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Gs</code>
+                    <definition>Glyceria striata</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Litter</attributeName>
+          <attributeDefinition>litter treatment applied to pot</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>Y</code>
+                    <definition>Yes (litter was added to pot)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>N</code>
+                    <definition>No (litter was not added to pot)</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Dry</attributeName>
+          <attributeDefinition>moisture treatment applied to pot</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>Y</code>
+                    <definition>Yes (pot received dry/low moisture treatment)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>N</code>
+                    <definition>No (pot received high moisture treatment)</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>H1_cm</attributeName>
+          <attributeDefinition>height of plant 1 (haphazardly chosen in pot)</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>centimeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">2</minimum>
+                  <maximum exclusive="false">17.5</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>H2_cm</attributeName>
+          <attributeDefinition>height of plant 2 (haphazardly chosen in pot)</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>centimeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                  <maximum exclusive="false">19.9</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>H3_cm</attributeName>
+          <attributeDefinition>height of plant 3 (haphazardly chosen in pot)</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>centimeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">1.5</minimum>
+                  <maximum exclusive="false">24.7</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>H4_cm</attributeName>
+          <attributeDefinition>height of plant 4 (haphazardly chosen in pot)</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>centimeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0.9</minimum>
+                  <maximum exclusive="false">22</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>H5_cm</attributeName>
+          <attributeDefinition>height of plant 5 (haphazardly chosen in pot)</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>centimeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">1.1</minimum>
+                  <maximum exclusive="false">18.4</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>65</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>App. S3 lesion data</entityName>
+      <entityDescription>foliar lesions on plants in Appendix S3 experiment</entityDescription>
+      <physical>
+        <objectName>AppS3_Infection_091318.csv</objectName>
+        <size unit="bytes">1976</size>
+        <authentication method="MD5">eb9aa5de6b9f69a4c054bbe74507c72b</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\r\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>Date</attributeName>
+          <attributeDefinition>date that data were collected</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>yyymmdd</formatString>
+              <dateTimeDomain/>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>PotID</attributeName>
+          <attributeDefinition>ID of pot (do not indicate blocking)</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                  <maximum exclusive="false">5</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Species</attributeName>
+          <attributeDefinition>species planted in pot</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>Mv</code>
+                    <definition>Microstegium vimineum</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Ev</code>
+                    <definition>Elymus virginicus</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Et</code>
+                    <definition>Eragrostis trichodes</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Pc</code>
+                    <definition>Dichanthelium (Panicum) clandestinum</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Cc</code>
+                    <definition>Calamagrostis canadensis</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Gs</code>
+                    <definition>Glyceria striata</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Litter</attributeName>
+          <attributeDefinition>litter treatment applied to pot</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>Y</code>
+                    <definition>Yes (litter was added to pot)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>N</code>
+                    <definition>No (litter was not added to pot)</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Dry</attributeName>
+          <attributeDefinition>moisture treatment applied to pot</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>Y</code>
+                    <definition>Yes (pot received dry/low moisture treatment)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>N</code>
+                    <definition>No (pot received high moisture treatment)</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>MvInf</attributeName>
+          <attributeDefinition>binary variable indicating whether at least two brown foliar lesions were observed on Microstegium vimineum plants in pot</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">1</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not applicable</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>MvNotes</attributeName>
+          <attributeDefinition>notes concerning MvInf observations</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>black spots</code>
+                    <definition>black spots were observed on leaves</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>low</code>
+                    <definition>low number of brown lesions observed on leaves</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>high</code>
+                    <definition>high number of brown lesions observed on leaves</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>light, also black spots</code>
+                    <definition>light brown spots and black spots observed on leaves</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>low, black spots</code>
+                    <definition>low number of brown lesions and black spots observed on leaves</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>specks</code>
+                    <definition>lesions appeared as small specks rather than defined Bipolaris-like lesions</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>blank</code>
+            <codeExplanation>no additional observations</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>NativeInf</attributeName>
+          <attributeDefinition>binary variable indicating whether at least two brown foliar lesions were observed on native plants in pot</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">1</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not applicable</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>NativeNotes</attributeName>
+          <attributeDefinition>notes concerning NativeInf observations</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>low</code>
+                    <definition>low number of brown lesions observed on leaves</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>black spots</code>
+                    <definition>black spots were observed on leaves</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>low, black spots</code>
+                    <definition>low number of brown lesions and black spots observed on leaves</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>blank</code>
+            <codeExplanation>no additional observations</codeExplanation>
+          </missingValueCode>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>65</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>App. S3 leaf wetness data</entityName>
+      <entityDescription>leaf wetness of plants in Appendix S3 experiment</entityDescription>
+      <physical>
+        <objectName>AppS3_leaf_moisture_080118.csv</objectName>
+        <size unit="bytes">13433</size>
+        <authentication method="MD5">c25c42ed4b9d50e6ac38122a8e8f4534</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\r\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>Date</attributeName>
+          <attributeDefinition>date that data were collected</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>mm/dd/yy</formatString>
+              <dateTimeDomain/>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Time</attributeName>
+          <attributeDefinition>time that data were collected</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>hh:mm AM/PM</formatString>
+              <dateTimeDomain/>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>PotId</attributeName>
+          <attributeDefinition>ID of pot (do not indicate blocking)</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                  <maximum exclusive="false">5</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Species</attributeName>
+          <attributeDefinition>species planted in pot</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>Cc</code>
+                    <definition>Calamagrostis canadensis</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Gs</code>
+                    <definition>Glyceria striata</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Et</code>
+                    <definition>Eragrostis trichodes</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Ev</code>
+                    <definition>Elymus virginicus</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Mv</code>
+                    <definition>Microstegium vimineum</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Pc</code>
+                    <definition>Dichanthelium (Panicum) clandestinum</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Treatment</attributeName>
+          <attributeDefinition>moisture treatment applied to pot</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>high moisture</code>
+                    <definition>pot received high moisture treatment</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Dry</code>
+                    <definition>pot received dry/low moisture treatment</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>LeafMoisture</attributeName>
+          <attributeDefinition>indicator variable for whether water droplets were observed on leaf surfaces</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>Y</code>
+                    <definition>Yes (water droplets were observed on leaves)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>N</code>
+                    <definition>No (water droplets were not observed on leaves)</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>Notes</attributeName>
+          <attributeDefinition>notes about LeafMoisture observations</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>Covered by litter</code>
+                    <definition>Water droplets could not be observed because leaves were covered by litter</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>But not much</code>
+                    <definition>Few water droples</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>started counting only those that have more than 2 leaves with water droplets</code>
+                    <definition>at 1:35 PM on the second day, only pots with at least three leaves with water droplets were assigned a Y for LeafMoisture</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>blank</code>
+            <codeExplanation>no additional observations</codeExplanation>
+          </missingValueCode>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>350</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>biomass data</entityName>
+      <entityDescription>biomass of M. vimineum and E. virginicus</entityDescription>
+      <physical>
+        <objectName>MvEv_Biomass_110918.csv</objectName>
+        <size unit="bytes">4761</size>
+        <authentication method="MD5">54a614cce0ed763a2b4d361559dc8c78</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\r\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>PotID</attributeName>
+          <attributeDefinition>ID of pot (do not indicate blocking)</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                  <maximum exclusive="false">6</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Treatment</attributeName>
+          <attributeDefinition>litter treatment applied to pot</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>None</code>
+                    <definition>no litter was added to the pot</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Low</code>
+                    <definition>low litter was added to the pot (0.91 g/pot; 50 g/m2)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Med</code>
+                    <definition>medium litter was added to the pot (1.82 g/pot; 100 g/m2)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>High</code>
+                    <definition>high litter was added to the pot (3.64 g/pot; 200 g/m2)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Shade</code>
+                    <definition>medium litter was added to the pot (1.82 g/pot; 100 g/m2) and the pot was placed under an additional shade tent. This treatment was omitted from the manuscript.</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>SpPresent</attributeName>
+          <attributeDefinition>species planted in pot</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>Mv</code>
+                    <definition>fifty seeds of Microstegium vimineum were planted in the pot.</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Ev</code>
+                    <definition>fifty seeds of Elymus virginicus were planted in the pot.</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Ev+Mv</code>
+                    <definition>fifty seeds each of Microstegium vimineum and Elymus virginicus were planted in the pot.</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>WeighedSp</attributeName>
+          <attributeDefinition>species biomass that was weighed</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>Mv</code>
+                    <definition>Weight_g corresponds to Microstegium vimineum</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Ev</code>
+                    <definition>Weight_g corresponds to Elymus virginicus</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Weight_g</attributeName>
+          <attributeDefinition>biomass weight</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>gram</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0.19</minimum>
+                  <maximum exclusive="false">47.24</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>DateWeighed</attributeName>
+          <attributeDefinition>date that biomass was weighed</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>yyyymmdd</formatString>
+              <dateTimeDomain/>
+            </dateTime>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>InitialsWeighed</attributeName>
+          <attributeDefinition>initials of person who weighed plants</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>AK</code>
+                    <definition>Amy Kendig</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>DateSorted</attributeName>
+          <attributeDefinition>date that leaves were evaluated for foliar fungal lesions</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>yyyymmdd</formatString>
+              <dateTimeDomain/>
+            </dateTime>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>InitialsSorted</attributeName>
+          <attributeDefinition>initials of person who evaluated leaves for foliar fungal lesions</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>CS</code>
+                    <definition>Callie San Antonio</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>PR</code>
+                    <definition>Penny Reif</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>DN</code>
+                    <definition>David Notman</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>ZC</code>
+                    <definition>Sobia Chanda</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>AK</code>
+                    <definition>Amy Kendig</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>PR+DN</code>
+                    <definition>Penny Reif and David Notman</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>Notes</attributeName>
+          <attributeDefinition>notes of observations while plants were evaluated and weighed</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>has some mold</code>
+                    <definition>plants had some mold when removed from 4 degrees C for evaluating foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>intentionally not measured</code>
+                    <definition>biomass was not measured in this pot because it was accidentally dropped</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>blank</code>
+            <codeExplanation>no additional observations</codeExplanation>
+          </missingValueCode>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>102</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>establishment and lesion data</entityName>
+      <entityDescription>establishment and foliar lesions of M. vimineum and E. virginicus</entityDescription>
+      <physical>
+        <objectName>MvEv_GerminationInfection_PostHarvest.csv</objectName>
+        <size unit="bytes">23164</size>
+        <authentication method="MD5">6e5a36e91299a222da0d08eee41b6a20</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\r\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>Date</attributeName>
+          <attributeDefinition>date that data were collected</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>yyyymmdd</formatString>
+              <dateTimeDomain/>
+            </dateTime>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not applicable</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>PotID</attributeName>
+          <attributeDefinition>ID of pot (do not indicate blocking)</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                  <maximum exclusive="false">6</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Treatment</attributeName>
+          <attributeDefinition>litter treatment applied to pot</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>None</code>
+                    <definition>no litter was added to the pot</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Low</code>
+                    <definition>low litter was added to the pot (0.91 g/pot; 50 g/m2)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Med</code>
+                    <definition>medium litter was added to the pot (1.82 g/pot; 100 g/m2)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>High</code>
+                    <definition>high litter was added to the pot (3.64 g/pot; 200 g/m2)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Shade</code>
+                    <definition>medium litter was added to the pot (1.82 g/pot; 100 g/m2) and the pot was placed under an additional shade tent. This treatment was omitted from the manuscript.</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>SpPresent</attributeName>
+          <attributeDefinition>species planted in pot</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>Mv</code>
+                    <definition>fifty seeds of Microstegium vimineum were planted in the pot.</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Ev</code>
+                    <definition>fifty seeds of Elymus virginicus were planted in the pot.</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Ev+Mv</code>
+                    <definition>fifty seeds each of Microstegium vimineum and Elymus virginicus were planted in the pot.</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>GermMv</attributeName>
+          <attributeDefinition>number of Microstegium vimineum plants observed in pot</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">55</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not applicable</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>GermEv</attributeName>
+          <attributeDefinition>number of Elymus virginicus plants observed in pot</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">132</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not applicable</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>InfectedMv</attributeName>
+          <attributeDefinition>number of Microstegium vimineum plants with at least two foliar lesions</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">24</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not applicable</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>InfectedEv</attributeName>
+          <attributeDefinition>number of Elymus virginicus plants with at least two foliar lesions</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>whole</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">31</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>not applicable</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>Notes</attributeName>
+          <attributeDefinition>notes about observations made</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>not to be used for germination data</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>1 mv with insect damage</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>could be dead leaf</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>thinned Mv</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>thinned Mv 7/6</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>herbivory</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>3 could be herbivory not infection</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>hard to tell if infection or something else</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>duct tape damage to a couple of plants</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>other damage due to herbivory and sun? as well</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>mushrooms growing. One Mv may have a had 1 spot</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>accidentally pulled 1 Ev (included in total), 1 lesion/1 leaf/1 plant</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>1 lesion/1 leaf/1 plant</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>some Ev have lesions, but the leaves are small and crowded, so it was hard to know if it is infection and count</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>1-3 lesions/1 leaf/1 plant</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>clicker may have gotten stuck (i.e. number may be one or two higher than this)</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>accidentally pulled out 1 Mv and 2 Ev (included in total)</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>accidentally pulled out 1 Ev (included in total)</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>lots of herbivore scratching</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>1 lesion/1 leaf/1 plant, lots of herbivore scratching</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>accidentally pulled out 2 Evs (included in the total)</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>accidentally pulled 1 Ev, 1-3 lesions/1 leaf/1 plant</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>1-2 lesions/1-2 leaves, Ev infection on small leaves, so it is hard to know if it is infection</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>not to be used for germination data, clicker may have gotten stuck (i.e. number may be 1 or 2 higher)</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>1-3 lesions/1 leaf/ 1plant</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>accidentally pulled 1 Ev (included in total), 1 lesion/1 leaf/1 plant, Ev small leaves (hard to ID infection)</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>1-4 lesions/1-2 leaves/1 plant</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>accidentally pulled out 1 Ev and re-planted it (included in total)</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>infection may be herbivory</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>brown speckles on lower leaves</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>2-3 lesions/1-2 leaves/1 plant</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>1 lesion/leaf with 1-2 leaves/plant, mostly bottom leaves</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Might be other infection coming from soil</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Pulled out 1</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Thinned</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Lots of spots/senescence which could be other infection or stress- didn't count</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Especially hard to count, very tangled. Pulled out 1 Mv</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>most of the infected were not grouped on same plants</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>thorough search for infection</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>small plants or lower leaves infected, thorough search for infection</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>nothing entered for Infected Mv, but there were no samples in the plastic bag</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>infection on edge, thorough search for infection</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>3 infections occurred on higher leaves with a lesion on the edge (didn't include because other searches were restricted to lower leaves), one was on a low/small plant, thorough search for infection</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Mv infection on the edge (didn't record whether these were high or low leaves, so they are left in), thorough search for infection</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>2 infections on lower leaves, 1 is higher and on the edge (didn't include because other searches were restricted to lower leaves), thorough search for infection</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Mv infection on small plant, thorough search for infection</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>the Ev numbers were entered in 5 High Mv, but I think they belong here because these were missing, thorough search for infection</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>1 infection low, 1 high and on edge (didn't include because other searches were restricted to lower leaves), thorough search for infection</code>
+                    <definition>for all notes, Mv = Microstegium vimineum, Ev = Elymus virginicus, germination = establishment, infection = at least two foliar lesions</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>blank</code>
+            <codeExplanation>no additional observations</codeExplanation>
+          </missingValueCode>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>594</numberOfRecords>
+    </dataTable>
+    <otherEntity>
+      <entityName>App. S3 code</entityName>
+      <entityDescription>code for analyses and figures in Appendix S3</entityDescription>
+      <physical>
+        <objectName>appendixS3.R</objectName>
+        <size unit="bytes">6159</size>
+        <authentication method="MD5">d75239a8b103deac1c8d18bcb50974d8</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Biomass analysis</entityName>
+      <entityDescription>code to analyze biomass data</entityDescription>
+      <physical>
+        <objectName>biomass_analysis.R</objectName>
+        <size unit="bytes">7163</size>
+        <authentication method="MD5">ccbcfdad7cef614bec511f8f7d418cef</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Data processing</entityName>
+      <entityDescription>code to process data for establishment and disease incidence analyses</entityDescription>
+      <physical>
+        <objectName>establishment_data_processing.R</objectName>
+        <size unit="bytes">9998</size>
+        <authentication method="MD5">054ec48ee86ffaeafa464b4f8cf3372e</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Establishment and disease incidence analysis</entityName>
+      <entityDescription>code to analyze establishment and disease incidence</entityDescription>
+      <physical>
+        <objectName>establishment_infection_analysis.R</objectName>
+        <size unit="bytes">6211</size>
+        <authentication method="MD5">5bef50db7b164b31222be5864ae311e0</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Figures and values</entityName>
+      <entityDescription>code for figures and values in main text</entityDescription>
+      <physical>
+        <objectName>figures_values.R</objectName>
+        <size unit="bytes">15921</size>
+        <authentication method="MD5">95adc8afb9a89841126351f914bfbfa0</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+    <otherEntity>
+      <entityName>Residuals analysis</entityName>
+      <entityDescription>code to analyze model residuals</entityDescription>
+      <physical>
+        <objectName>residual_infection_analysis.R</objectName>
+        <size unit="bytes">2322</size>
+        <authentication method="MD5">cab42fceb62fe8b9804ffa48f4de953e</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/plain</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+      </physical>
+      <entityType>unknown</entityType>
+    </otherEntity>
+  </dataset>
+</eml:eml>

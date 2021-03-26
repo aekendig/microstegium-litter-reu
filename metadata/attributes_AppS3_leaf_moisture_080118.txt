@@ -1,0 +1,8 @@
+attributeName	attributeDefinition	class	unit	dateTimeFormatString	missingValueCode	missingValueCodeExplanation
+Date	date that data were collected	Date		MM/DD/YY		
+Time	time that data were collected	Date		hh:mm		
+PotId	ID of pot (do not indicate blocking)	numeric	dimensionless			
+Species	species planted in pot	categorical				
+Treatment	moisture treatment applied to pot	categorical				
+LeafMoisture	indicator variable for whether water droplets were observed on leaf surfaces	categorical			NA	not available
+Notes	notes about LeafMoisture observations	categorical			blank	no additional observations

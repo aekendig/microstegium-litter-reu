@@ -1,6 +1,6 @@
 #### goals #### 
 
-# Tables and figures of Appendix S2
+# Tables and figures of Appendix S3
 
 
 #### set up ####
@@ -15,9 +15,9 @@ library(cowplot)
 
 
 # import data
-heightDat <- read_csv("data/AppS2_heights_073018.csv")
-leafDat <- read_csv("data/AppS2_leaf_moisture_080118.csv")
-infDat <- read_csv("data/AppS2_Infection_091318.csv")
+heightDat <- read_csv("data/AppS3_heights_073018.csv")
+leafDat <- read_csv("data/AppS3_leaf_moisture_080118.csv")
+infDat <- read_csv("data/AppS3_Infection_091318.csv")
 
 # figure theme
 fig_theme <- theme_bw() +
@@ -55,7 +55,7 @@ unique(infDat$NativeNotes)
 leafDat2 <- leafDat %>%
   mutate(DateTime = strptime(paste(Date, Time), format = "%m/%d/%y %H:%M"),
          Hours = as.numeric(difftime(DateTime, min(DateTime), units = "hours")),
-         LeafMoisture = recode(LeafMoisture, Y = "1", N = "0", y = "1") %>%
+         LeafMoisture = recode(LeafMoisture, Y = "1", N = "0") %>%
            as.numeric(),
          Species = recode(Species, Cc = "Calamagrostis", Et = "Eragrostis", Ev = "Elymus", Gs = "Glyceria", Mv = "Microstegium", Pc = "Dichanthelium"),
          Moisture = recode(Treatment, "Dry" = "low", "high moisture" = "high") %>%
@@ -99,7 +99,7 @@ ggplot(heightDatL, aes(Species, LogHeight.cm)) +
 # model estimates exactly match mean of raw data
 
 # figure
-pdf("output/AppS2_Figure1.pdf", width = 4, height = 3)
+pdf("output/AppS3_Figure1.pdf", width = 4, height = 3)
 ggplot(heightDatL, aes(Species, Height.cm)) +
   stat_summary(geom = "errorbar", fun.data = "mean_cl_boot", width = 0) +
   stat_summary(geom = "point", fun = "mean", size = 2) +
@@ -117,16 +117,21 @@ heightDatL %>%
 
 #### leaf moisture ####
 
+leafDatSum <- leafDat2 %>%
+  group_by(Hours, Species, Moisture) %>%
+  summarise(prop = mean(LeafMoisture, na.rm = T)) %>%
+  data.frame()
+
 # figure 
-pdf("output/AppS2_Figure2.pdf", width = 4.5, height = 3)
-ggplot(leafDat2, aes(Hours, LeafMoisture, color = Species, shape = Moisture, linetype = Moisture)) +
-    stat_summary(geom = "line", fun = "mean") +
-    stat_summary(geom = "point", fun = "mean") +
-    scale_linetype_manual(values = line_pal) +
-    scale_shape_manual(values = shape_pal) +
-    ylab("Proportion of pots with wet leaves") +
-    xlab("Hours since litter addition") +
-    fig_theme
+pdf("output/AppS3_Figure2.pdf", width = 4.5, height = 3)
+ggplot(leafDatSum, aes(x = Hours, y = prop, color = Species)) +
+  geom_point(aes(shape = Moisture)) +
+  geom_line(aes(linetype = Moisture)) +
+  scale_linetype_manual(values = line_pal) +
+  scale_shape_manual(values = shape_pal) +
+  ylab("Proportion of pots with wet leaves") +
+  xlab("Hours since litter addition") +
+  fig_theme
 dev.off()
   
 # NA's
@@ -192,7 +197,7 @@ moistDat %>%
 
 
 #### combine figures ####
-pdf("output/AppS2_Figure3.pdf", width = 6, height = 3)
+pdf("output/AppS3_Figure3.pdf", width = 6, height = 3)
 plot_grid(moistFig, litFig,
           nrow = 1,
           labels = c("a", "b"),

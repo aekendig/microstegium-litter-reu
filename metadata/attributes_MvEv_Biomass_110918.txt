@@ -1,0 +1,11 @@
+attributeName	attributeDefinition	class	unit	dateTimeFormatString	missingValueCode	missingValueCodeExplanation
+PotID	ID of pot (do not indicate blocking)	numeric	dimensionless			
+Treatment	litter treatment applied to pot	categorical				
+SpPresent	species planted in pot	categorical				
+WeighedSp	species biomass that was weighed	categorical				
+Weight_g	biomass weight	numeric	gram		NA	not available
+DateWeighed	date that biomass was weighed	Date		YYYYMMDD	NA	not available
+InitialsWeighed	initials of person who weighed plants	categorical			NA	not available
+DateSorted	date that leaves were evaluated for foliar fungal lesions	Date		YYYYMMDD	NA	not available
+InitialsSorted	initials of person who evaluated leaves for foliar fungal lesions	categorical			NA	not available
+Notes	notes of observations while plants were evaluated and weighed	categorical			blank	no additional observations

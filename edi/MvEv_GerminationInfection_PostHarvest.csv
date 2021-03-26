@@ -1,0 +1,595 @@
+Date,PotID,Treatment,SpPresent,GermMv,GermEv,InfectedMv,InfectedEv,Notes
+20180621,1,None,Mv,11,NA,0,NA,
+20180621,1,None,Ev,NA,12,NA,0,
+20180621,1,None,Ev+Mv,3,12,0,0,
+20180621,1,Low,Mv,10,NA,0,NA,
+20180621,1,Low,Ev,1,6,0,0,
+20180621,1,Low,Ev+Mv,9,4,0,0,
+20180621,1,Med,Mv,1,NA,0,NA,
+20180621,1,Med,Ev,1,4,0,0,
+20180621,1,Med,Ev+Mv,12,8,0,0,
+20180621,1,High,Mv,12,NA,0,NA,
+20180621,1,High,Ev,0,1,NA,0,
+20180621,1,High,Ev+Mv,5,3,0,0,
+20180621,1,Shade,Mv,12,NA,0,NA,
+20180621,2,None,Mv,15,NA,0,NA,
+20180621,2,None,Ev,NA,11,NA,0,
+20180621,2,None,Ev+Mv,8,11,0,0,
+20180621,2,Low,Mv,15,NA,0,NA,
+20180621,2,Low,Ev,0,8,NA,0,
+20180621,2,Low,Ev+Mv,3,6,0,0,
+20180621,2,Med,Mv,5,NA,0,NA,
+20180621,2,Med,Ev,0,8,NA,0,
+20180621,2,Med,Ev+Mv,16,8,0,0,
+20180621,2,High,Mv,1,NA,0,NA,
+20180621,2,High,Ev,0,6,NA,0,
+20180621,2,High,Ev+Mv,8,0,0,NA,
+20180621,2,Shade,Mv,14,NA,0,NA,
+20180621,3,None,Mv,9,NA,0,NA,
+20180621,3,None,Ev,NA,10,NA,0,
+20180621,3,None,Ev+Mv,11,10,0,0,
+20180621,3,Low,Mv,8,NA,0,NA,
+20180621,3,Low,Ev,0,7,NA,0,
+20180621,3,Low,Ev+Mv,12,7,0,0,
+20180621,3,Med,Mv,7,NA,0,NA,
+20180621,3,Med,Ev,0,7,NA,0,
+20180621,3,Med,Ev+Mv,7,6,0,0,
+20180621,3,High,Mv,14,NA,0,NA,
+20180621,3,High,Ev,7,3,0,0,
+20180621,3,High,Ev+Mv,11,6,0,0,
+20180621,3,Shade,Mv,NA,NA,0,NA,not to be used for germination data
+20180621,4,None,Mv,9,NA,0,NA,
+20180621,4,None,Ev,NA,13,NA,0,
+20180621,4,None,Ev+Mv,13,11,0,0,
+20180621,4,Low,Mv,17,NA,0,NA,
+20180621,4,Low,Ev,0,7,NA,0,
+20180621,4,Low,Ev+Mv,9,14,0,0,
+20180621,4,Med,Mv,9,NA,0,NA,
+20180621,4,Med,Ev,0,4,NA,0,
+20180621,4,Med,Ev+Mv,11,7,0,0,
+20180621,4,High,Mv,7,NA,0,NA,
+20180621,4,High,Ev,4,0,0,NA,
+20180621,4,High,Ev+Mv,7,4,0,0,
+20180621,4,Shade,Mv,6,NA,0,NA,
+20180621,5,None,Mv,7,NA,0,NA,
+20180621,5,None,Ev,NA,15,NA,0,
+20180621,5,None,Ev+Mv,11,12,0,0,
+20180621,5,Low,Mv,6,NA,0,NA,
+20180621,5,Low,Ev,0,7,NA,0,
+20180621,5,Low,Ev+Mv,17,4,0,0,
+20180621,5,Med,Mv,12,NA,0,NA,
+20180621,5,Med,Ev,0,9,NA,0,
+20180621,5,Med,Ev+Mv,12,9,0,0,
+20180621,5,High,Mv,6,NA,0,NA,
+20180621,5,High,Ev,0,6,NA,0,
+20180621,5,High,Ev+Mv,4,4,0,0,
+20180621,5,Shade,Mv,10,NA,0,NA,
+20180621,6,None,Mv,16,NA,0,NA,
+20180621,6,None,Ev,NA,9,NA,0,
+20180621,6,None,Ev+Mv,12,9,0,0,
+20180621,6,Low,Mv,9,NA,0,NA,
+20180621,6,Low,Ev,0,8,NA,0,
+20180621,6,Low,Ev+Mv,2,4,0,0,
+20180621,6,Med,Mv,6,NA,0,NA,
+20180621,6,Med,Ev,0,4,NA,0,
+20180621,6,Med,Ev+Mv,13,5,0,0,
+20180621,6,High,Mv,3,NA,0,NA,
+20180621,6,High,Ev,0,1,NA,0,
+20180621,6,High,Ev+Mv,6,3,0,0,
+20180621,6,Shade,Mv,7,NA,0,NA,
+20180625,1,None,Mv,39,NA,0,NA,
+20180625,1,None,Ev,NA,22,NA,0,
+20180625,1,None,Ev+Mv,39,25,0,0,
+20180625,1,Low,Mv,39,NA,0,NA,
+20180625,1,Low,Ev,3,32,0,0,
+20180625,1,Low,Ev+Mv,47,16,0,0,
+20180625,1,Med,Mv,34,NA,0,NA,
+20180625,1,Med,Ev,2,12,0,0,
+20180625,1,Med,Ev+Mv,37,25,0,0,
+20180625,1,High,Mv,41,NA,0,NA,
+20180625,1,High,Ev,1,22,0,0,
+20180625,1,High,Ev+Mv,40,14,0,0,
+20180625,1,Shade,Mv,42,NA,0,NA,
+20180625,2,None,Mv,42,NA,0,NA,
+20180625,2,None,Ev,NA,24,NA,0,
+20180625,2,None,Ev+Mv,34,23,0,0,
+20180625,2,Low,Mv,44,NA,0,NA,
+20180625,2,Low,Ev,1,21,,,
+20180625,2,Low,Ev+Mv,37,17,0,0,
+20180625,2,Med,Mv,26,NA,0,NA,
+20180625,2,Med,Ev,0,18,0,0,
+20180625,2,Med,Ev+Mv,47,20,0,0,
+20180625,2,High,Mv,37,NA,1,NA,
+20180625,2,High,Ev,7,16,0,0,
+20180625,2,High,Ev+Mv,44,15,0,0,
+20180625,2,Shade,Mv,29,NA,0,NA,
+20180625,3,None,Mv,45,NA,0,NA,
+20180625,3,None,Ev,NA,16,NA,0,
+20180625,3,None,Ev+Mv,34,27,0,0,
+20180625,3,Low,Mv,43,NA,0,NA,
+20180625,3,Low,Ev,0,20,0,0,
+20180625,3,Low,Ev+Mv,36,19,0,0,
+20180625,3,Med,Mv,34,NA,0,NA,
+20180625,3,Med,Ev,0,26,0,0,
+20180625,3,Med,Ev+Mv,39,18,0,0,
+20180625,3,High,Mv,37,NA,0,NA,
+20180625,3,High,Ev,16,18,0,0,
+20180625,3,High,Ev+Mv,44,22,0,0,
+20180625,3,Shade,Mv,NA,NA,0,NA,not to be used for germination data
+20180625,4,None,Mv,40,NA,0,NA,
+20180625,4,None,Ev,NA,24,NA,0,
+20180625,4,None,Ev+Mv,47,19,0,0,
+20180625,4,Low,Mv,42,NA,0,NA,
+20180625,4,Low,Ev,1,15,0,1,
+20180625,4,Low,Ev+Mv,36,33,0,0,
+20180625,4,Med,Mv,30,NA,0,NA,
+20180625,4,Med,Ev,0,14,0,0,
+20180625,4,Med,Ev+Mv,43,20,0,0,
+20180625,4,High,Mv,46,NA,0,NA,
+20180625,4,High,Ev,5,18,0,0,
+20180625,4,High,Ev+Mv,40,22,0,0,
+20180625,4,Shade,Mv,40,NA,0,NA,
+20180625,5,None,Mv,41,NA,0,NA,
+20180625,5,None,Ev,NA,32,NA,0,
+20180625,5,None,Ev+Mv,36,23,0,0,
+20180625,5,Low,Mv,43,NA,0,NA,
+20180625,5,Low,Ev,0,22,0,0,
+20180625,5,Low,Ev+Mv,47,19,0,0,
+20180625,5,Med,Mv,50,NA,0,NA,
+20180625,5,Med,Ev,1,16,0,0,
+20180625,5,Med,Ev+Mv,38,23,0,0,
+20180625,5,High,Mv,38,NA,0,NA,
+20180625,5,High,Ev,3,22,0,0,
+20180625,5,High,Ev+Mv,41,22,0,0,
+20180625,5,Shade,Mv,44,NA,0,NA,
+20180625,6,None,Mv,40,NA,0,NA,
+20180625,6,None,Ev,NA,16,NA,0,
+20180625,6,None,Ev+Mv,40,21,0,0,
+20180625,6,Low,Mv,37,NA,1,NA,
+20180625,6,Low,Ev,1,23,0,0,
+20180625,6,Low,Ev+Mv,42,19,0,0,
+20180625,6,Med,Mv,39,NA,1,NA,
+20180625,6,Med,Ev,0,13,0,0,
+20180625,6,Med,Ev+Mv,37,24,0,0,
+20180625,6,High,Mv,38,NA,0,NA,
+20180625,6,High,Ev,3,19,0,0,
+20180625,6,High,Ev+Mv,37,14,0,0,
+20180625,6,Shade,Mv,37,NA,0,NA,
+20180627,1,None,Mv,39,NA,0,NA,
+20180627,1,None,Ev,NA,30,NA,0,
+20180627,1,None,Ev+Mv,42,29,0,0,
+20180627,1,Low,Mv,40,NA,0,NA,
+20180627,1,Low,Ev,1,31,0,1,
+20180627,1,Low,Ev+Mv,48,15,0,0,
+20180627,1,Med,Mv,38,NA,0,NA,
+20180627,1,Med,Ev,2,14,0,0,
+20180627,1,Med,Ev+Mv,37,25,1,1,
+20180627,1,High,Mv,43,NA,1,NA,
+20180627,1,High,Ev,1,24,0,0,
+20180627,1,High,Ev+Mv,39,19,0,0,
+20180627,1,Shade,Mv,41,NA,0,NA,
+20180627,2,None,Mv,44,NA,0,NA,
+20180627,2,None,Ev,NA,28,NA,0,
+20180627,2,None,Ev+Mv,36,25,0,0,
+20180627,2,Low,Mv,44,NA,0,NA,
+20180627,2,Low,Ev,0,25,0,0,
+20180627,2,Low,Ev+Mv,40,22,0,0,
+20180627,2,Med,Mv,26,NA,0,NA,
+20180627,2,Med,Ev,0,22,0,0,
+20180627,2,Med,Ev+Mv,48,23,0,0,
+20180627,2,High,Mv,44,NA,0,NA,
+20180627,2,High,Ev,9,23,0,0,
+20180627,2,High,Ev+Mv,46,23,0,0,1 mv with insect damage
+20180627,2,Shade,Mv,30,NA,0,NA,
+20180627,3,None,Mv,49,NA,0,NA,
+20180627,3,None,Ev,NA,18,NA,0,
+20180627,3,None,Ev+Mv,38,26,0,0,
+20180627,3,Low,Mv,45,NA,0,NA,
+20180627,3,Low,Ev,0,24,0,0,
+20180627,3,Low,Ev+Mv,40,22,1,0,
+20180627,3,Med,Mv,35,NA,0,NA,
+20180627,3,Med,Ev,0,29,0,0,
+20180627,3,Med,Ev+Mv,39,23,0,0,
+20180627,3,High,Mv,43,NA,0,NA,
+20180627,3,High,Ev,18,23,0,0,
+20180627,3,High,Ev+Mv,42,21,1,0,
+20180627,3,Shade,Mv,NA,NA,0,NA,not to be used for germination data
+20180627,4,None,Mv,41,NA,0,NA,
+20180627,4,None,Ev,NA,30,NA,0,
+20180627,4,None,Ev+Mv,46,20,0,0,
+20180627,4,Low,Mv,43,NA,0,NA,
+20180627,4,Low,Ev,1,20,0,2,
+20180627,4,Low,Ev+Mv,34,27,0,1,
+20180627,4,Med,Mv,34,NA,0,NA,
+20180627,4,Med,Ev,0,22,0,0,
+20180627,4,Med,Ev+Mv,42,25,0,0,
+20180627,4,High,Mv,47,NA,0,NA,
+20180627,4,High,Ev,4,20,0,1,
+20180627,4,High,Ev+Mv,41,25,0,0,
+20180627,4,Shade,Mv,41,NA,0,NA,
+20180627,5,None,Mv,41,NA,0,NA,
+20180627,5,None,Ev,NA,38,NA,0,
+20180627,5,None,Ev+Mv,39,24,0,0,
+20180627,5,Low,Mv,46,NA,1,NA,could be dead leaf 
+20180627,5,Low,Ev,0,25,0,0,
+20180627,5,Low,Ev+Mv,44,22,0,0,
+20180627,5,Med,Mv,45,NA,0,NA,
+20180627,5,Med,Ev,1,17,0,0,
+20180627,5,Med,Ev+Mv,43,24,0,0,
+20180627,5,High,Mv,39,NA,0,NA,
+20180627,5,High,Ev,2,25,0,0,
+20180627,5,High,Ev+Mv,42,24,0,2,
+20180627,5,Shade,Mv,44,NA,0,NA,
+20180627,6,None,Mv,40,NA,0,NA,
+20180627,6,None,Ev,NA,17,NA,0,
+20180627,6,None,Ev+Mv,42,23,0,0,
+20180627,6,Low,Mv,37,NA,2,NA,
+20180627,6,Low,Ev,1,25,0,0,
+20180627,6,Low,Ev+Mv,42,20,0,1,
+20180627,6,Med,Mv,43,NA,1,NA,
+20180627,6,Med,Ev,1,17,0,0,
+20180627,6,Med,Ev+Mv,39,26,0,0,
+20180627,6,High,Mv,38,NA,0,NA,
+20180627,6,High,Ev,2,21,0,0,
+20180627,6,High,Ev+Mv,37,15,0,0,
+20180627,6,Shade,Mv,36,NA,0,NA,
+20180704,1,None,Mv,40,NA,0,NA,
+20180704,1,None,Ev,NA,33,NA,0,
+20180704,1,None,Ev+Mv,42,28,0,0,
+20180704,1,Low,Mv,43,NA,2,NA,
+20180704,1,Low,Ev,2,32,0,0,thinned Mv
+20180704,1,Low,Ev+Mv,50,26,0,2,
+20180704,1,Med,Mv,38,NA,0,NA,
+20180704,1,Med,Ev,4,21,0,1,thinned Mv
+20180704,1,Med,Ev+Mv,32,30,1,2,
+20180704,1,High,Mv,40,NA,6,NA,
+20180704,1,High,Ev,1,32,0,0,thinned Mv
+20180704,1,High,Ev+Mv,41,23,2,1,
+20180704,1,Shade,Mv,40,NA,2,NA,
+20180704,2,None,Mv,41,NA,0,NA,
+20180704,2,None,Ev,NA,37,NA,0,
+20180704,2,None,Ev+Mv,33,28,0,0,
+20180704,2,Low,Mv,45,NA,1,NA,
+20180704,2,Low,Ev,1,27,0,0,thinned Mv
+20180704,2,Low,Ev+Mv,36,23,0,0,
+20180704,2,Med,Mv,27,NA,1,NA,
+20180704,2,Med,Ev,0,33,0,0,thinned Mv
+20180704,2,Med,Ev+Mv,46,28,0,0,
+20180704,2,High,Mv,39,NA,0,NA,
+20180704,2,High,Ev,10,30,0,0,thinned Mv
+20180704,2,High,Ev+Mv,44,20,2,1,
+20180704,2,Shade,Mv,30,NA,2,NA,
+20180704,3,None,Mv,46,NA,0,NA,
+20180704,3,None,Ev,NA,27,NA,0,
+20180704,3,None,Ev+Mv,36,31,0,0,
+20180704,3,Low,Mv,45,NA,2,NA,
+20180704,3,Low,Ev,0,37,0,0,thinned Mv
+20180704,3,Low,Ev+Mv,40,18,6,4,
+20180704,3,Med,Mv,35,NA,0,NA,
+20180704,3,Med,Ev,1,37,0,0,thinned Mv
+20180704,3,Med,Ev+Mv,41,28,8,3,
+20180704,3,High,Mv,42,NA,0,NA,
+20180704,3,High,Ev,22,27,2,4,thinned Mv 7/6
+20180704,3,High,Ev+Mv,44,29,2,0,
+20180704,3,Shade,Mv,NA,NA,1,NA,not to be used for germination data
+20180704,4,None,Mv,41,NA,0,NA,
+20180704,4,None,Ev,NA,36,NA,0,
+20180704,4,None,Ev+Mv,45,25,0,0,
+20180704,4,Low,Mv,40,NA,2,NA,
+20180704,4,Low,Ev,2,29,0,5,thinned Mv
+20180704,4,Low,Ev+Mv,31,31,1,1,herbivory
+20180704,4,Med,Mv,34,NA,0,NA,
+20180704,4,Med,Ev,0,33,NA,0,thinned Mv
+20180704,4,Med,Ev+Mv,42,30,0,2,
+20180704,4,High,Mv,54,NA,1,NA,
+20180704,4,High,Ev,9,28,1,2,thinned Mv
+20180704,4,High,Ev+Mv,44,28,1,1,herbivory
+20180704,4,Shade,Mv,37,NA,0,NA,
+20180704,5,None,Mv,40,NA,0,NA,
+20180704,5,None,Ev,NA,39,NA,0,
+20180704,5,None,Ev+Mv,35,29,0,0,
+20180704,5,Low,Mv,44,NA,4,NA,3 could be herbivory not infection
+20180704,5,Low,Ev,0,37,NA,2,thinned Mv
+20180704,5,Low,Ev+Mv,43,24,2,0,
+20180704,5,Med,Mv,53,NA,0,NA,
+20180704,5,Med,Ev,1,28,0,0,thinned Mv
+20180704,5,Med,Ev+Mv,41,26,1,1,
+20180704,5,High,Mv,43,NA,2,NA,
+20180704,5,High,Ev,4,32,0,1,thinned Mv
+20180704,5,High,Ev+Mv,41,28,0,2,
+20180704,5,Shade,Mv,43,NA,2,NA,
+20180704,6,None,Mv,38,NA,0,NA,
+20180704,6,None,Ev,NA,26,NA,0,
+20180704,6,None,Ev+Mv,40,25,0,0,
+20180704,6,Low,Mv,36,NA,2,NA,
+20180704,6,Low,Ev,1,34,0,0,
+20180704,6,Low,Ev+Mv,42,22,2,3,
+20180704,6,Med,Mv,39,NA,2,NA,
+20180704,6,Med,Ev,1,27,0,1,thinned Mv
+20180704,6,Med,Ev+Mv,39,27,0,1,
+20180704,6,High,Mv,42,NA,5,NA,
+20180704,6,High,Ev,3,28,0,2,
+20180704,6,High,Ev+Mv,39,19,0,0,
+20180704,6,Shade,Mv,40,NA,4,NA,hard to tell if infection or something else
+20180711,1,None,Mv,40,NA,0,NA,
+20180711,1,None,Ev,NA,38,NA,0,
+20180711,1,None,Ev+Mv,41,35,0,0,duct tape damage to a couple of plants
+20180711,1,Low,Mv,43,NA,3,NA,
+20180711,1,Low,Ev,2,36,0,2,thinned Mv
+20180711,1,Low,Ev+Mv,42,28,1,0,herbivory
+20180711,1,Med,Mv,40,NA,0,NA,
+20180711,1,Med,Ev,4,38,0,3,thinned Mv
+20180711,1,Med,Ev+Mv,35,33,1,2,
+20180711,1,High,Mv,43,NA,3,NA,
+20180711,1,High,Ev,2,40,0,3,thinned Mv
+20180711,1,High,Ev+Mv,46,33,1,1,
+20180711,1,Shade,Mv,41,NA,3,NA,
+20180711,2,None,Mv,44,NA,0,NA,
+20180711,2,None,Ev,NA,37,NA,0,
+20180711,2,None,Ev+Mv,37,25,0,0,
+20180711,2,Low,Mv,43,NA,2,NA,other damage due to herbivory and sun? as well
+20180711,2,Low,Ev,1,32,0,1,thinned Mv
+20180711,2,Low,Ev+Mv,39,29,0,0,
+20180711,2,Med,Mv,30,NA,0,NA,
+20180711,2,Med,Ev,0,41,0,0,thinned Mv
+20180711,2,Med,Ev+Mv,43,31,1,0,
+20180711,2,High,Mv,39,NA,0,NA,
+20180711,2,High,Ev,10,41,0,2,thinned Mv
+20180711,2,High,Ev+Mv,48,34,2,1,
+20180711,2,Shade,Mv,29,NA,0,NA,
+20180711,3,None,Mv,46,NA,0,NA,
+20180711,3,None,Ev,NA,37,NA,0,
+20180711,3,None,Ev+Mv,36,34,0,0,mushrooms growing. One Mv may have a had 1 spot
+20180711,3,Low,Mv,45,NA,2,NA,
+20180711,3,Low,Ev,0,44,1,0,thinned Mv
+20180711,3,Low,Ev+Mv,37,34,12,3,
+20180711,3,Med,Mv,36,NA,0,NA,
+20180711,3,Med,Ev,1,41,0,0,thinned Mv
+20180711,3,Med,Ev+Mv,38,39,3,4,
+20180711,3,High,Mv,45,NA,0,NA,
+20180711,3,High,Ev,34,41,1,4,thinned Mv
+20180711,3,High,Ev+Mv,45,31,3,1,
+20180711,3,Shade,Mv,NA,NA,1,NA,not to be used for germination data
+20180711,4,None,Mv,43,NA,0,NA,
+20180711,4,None,Ev,NA,41,NA,0,
+20180711,4,None,Ev+Mv,48,35,0,0,
+20180711,4,Low,Mv,44,NA,2,NA,
+20180711,4,Low,Ev,2,32,0,4,thinned Mv
+20180711,4,Low,Ev+Mv,38,34,2,0,
+20180711,4,Med,Mv,33,NA,0,NA,
+20180711,4,Med,Ev,0,35,0,0,thinned Mv
+20180711,4,Med,Ev+Mv,42,32,1,2,herbivory
+20180711,4,High,Mv,50,NA,6,NA,herbivory
+20180711,4,High,Ev,10,33,0,2,thinned Mv
+20180711,4,High,Ev+Mv,45,30,0,2,
+20180711,4,Shade,Mv,40,NA,0,NA,
+20180711,5,None,Mv,42,NA,0,NA,
+20180711,5,None,Ev,NA,40,NA,0,
+20180711,5,None,Ev+Mv,37,30,0,0,
+20180711,5,Low,Mv,46,NA,9,NA,
+20180711,5,Low,Ev,0,47,0,3,thinned Mv
+20180711,5,Low,Ev+Mv,54,29,2,0,
+20180711,5,Med,Mv,52,NA,0,NA,
+20180711,5,Med,Ev,1,34,0,0,thinned Mv
+20180711,5,Med,Ev+Mv,45,29,3,0,
+20180711,5,High,Mv,44,NA,0,NA,
+20180711,5,High,Ev,6,31,0,1,thinned Mv
+20180711,5,High,Ev+Mv,42,33,0,2,
+20180711,5,Shade,Mv,44,NA,1,NA,
+20180711,6,None,Mv,42,NA,0,NA,
+20180711,6,None,Ev,NA,35,NA,0,
+20180711,6,None,Ev+Mv,40,37,0,0,
+20180711,6,Low,Mv,39,NA,1,NA,
+20180711,6,Low,Ev,1,41,0,0,thinned Mv
+20180711,6,Low,Ev+Mv,38,32,1,3,
+20180711,6,Med,Mv,43,NA,1,NA,
+20180711,6,Med,Ev,1,25,0,2,thinned Mv
+20180711,6,Med,Ev+Mv,34,34,1,0,
+20180711,6,High,Mv,39,NA,2,NA,
+20180711,6,High,Ev,3,35,0,3,thinned Mv
+20180711,6,High,Ev+Mv,40,26,0,0,
+20180711,6,Shade,Mv,41,NA,14,NA,
+20180721,1,None,Mv,40,NA,0,NA,
+20180721,1,None,Ev,NA,42,NA,0,
+20180721,1,None,Ev+Mv,41,37,0,0,
+20180723,1,Low,Mv,41,NA,0,NA,
+20180723,1,Low,Ev,0,34,0,0,
+20180723,1,Low,Ev+Mv,44,36,2,5,"accidentally pulled 1 Ev (included in total), 1 lesion/1 leaf/1 plant"
+20180722,1,Med,Mv,40,NA,3,NA,1 lesion/1 leaf/1 plant
+20180722,1,Med,Ev,0,37,0,2,1 lesion/1 leaf/1 plant
+20180722,1,Med,Ev+Mv,35,40,0,0,"some Ev have lesions, but the leaves are small and crowded, so it was hard to know if it is infection and count"
+20180724,1,High,Mv,40,NA,5,NA,1 lesion/1 leaf/1 plant
+20180724,1,High,Ev,1,42,0,5,1 lesion/1 leaf/1 plant
+20180724,1,High,Ev+Mv,39,30,10,5,1-3 lesions/1 leaf/1 plant
+20180721,1,Shade,Mv,43,NA,0,NA,clicker may have gotten stuck (i.e. number may be one or two higher than this)
+20180721,2,None,Mv,46,NA,1,NA,1 lesion/1 leaf/1 plant
+20180721,2,None,Ev,NA,44,NA,0,
+20180721,2,None,Ev+Mv,35,42,0,0,
+20180723,2,Low,Mv,41,NA,2,NA,1 lesion/1 leaf/1 plant
+20180723,2,Low,Ev,0,37,0,3,1 lesion/1 leaf/1 plant
+20180723,2,Low,Ev+Mv,34,27,0,0,accidentally pulled out 1 Mv and 2 Ev (included in total)
+20180722,2,Med,Mv,26,NA,0,NA,
+20180722,2,Med,Ev,0,37,0,0,
+20180722,2,Med,Ev+Mv,46,37,0,0,accidentally pulled out 1 Ev (included in total)
+20180724,2,High,Mv,42,NA,1,NA,1 lesion/1 leaf/1 plant
+20180724,2,High,Ev,1,41,0,7,1 lesion/1 leaf/1 plant
+20180724,2,High,Ev+Mv,47,41,4,1,lots of herbivore scratching
+20180721,2,Shade,Mv,30,NA,6,NA,"1 lesion/1 leaf/1 plant, lots of herbivore scratching"
+20180721,3,None,Mv,49,NA,0,NA,
+20180721,3,None,Ev,NA,40,NA,0,
+20180721,3,None,Ev+Mv,35,40,0,0,accidentally pulled out 2 Evs (included in the total)
+20180723,3,Low,Mv,43,NA,5,NA,
+20180723,3,Low,Ev,1,41,0,0,
+20180723,3,Low,Ev+Mv,36,39,21,13,"accidentally pulled 1 Ev, 1-3 lesions/1 leaf/1 plant"
+20180722,3,Med,Mv,33,NA,0,NA,
+20180722,3,Med,Ev,0,37,0,0,
+20180722,3,Med,Ev+Mv,34,37,7,11,"1-2 lesions/1-2 leaves, Ev infection on small leaves, so it is hard to know if it is infection"
+20180724,3,High,Mv,46,NA,0,NA,
+20180724,3,High,Ev,3,40,0,3,1 lesion/1 leaf/1 plant
+20180724,3,High,Ev+Mv,43,34,2,4,1 lesion/1 leaf/1 plant
+20180721,3,Shade,Mv,34,NA,0,NA,"not to be used for germination data, clicker may have gotten stuck (i.e. number may be 1 or 2 higher)"
+20180721,4,None,Mv,43,NA,0,NA,
+20180721,4,None,Ev,NA,43,NA,0,
+20180721,4,None,Ev+Mv,47,42,0,0,
+20180723,4,Low,Mv,39,NA,0,NA,
+20180723,4,Low,Ev,0,33,0,1,
+20180723,4,Low,Ev+Mv,35,39,11,6,1-3 lesions/1 leaf/ 1plant
+20180722,4,Med,Mv,34,NA,0,NA,
+20180722,4,Med,Ev,0,40,0,0,
+20180722,4,Med,Ev+Mv,41,42,8,2,"accidentally pulled 1 Ev (included in total), 1 lesion/1 leaf/1 plant, Ev small leaves (hard to ID infection)"
+20180724,4,High,Mv,49,NA,24,NA,1-4 lesions/1-2 leaves/1 plant
+20180724,4,High,Ev,0,32,0,5,1 lesion/1 leaf/1 plant
+20180724,4,High,Ev+Mv,44,43,4,9,1 lesion/1 leaf/1 plant
+20180721,4,Shade,Mv,42,NA,0,NA,
+20180721,5,None,Mv,41,NA,1,NA,1 lesion/1 leaf/1 plant
+20180721,5,None,Ev,NA,44,NA,0,accidentally pulled out 1 Ev and re-planted it (included in total)
+20180721,5,None,Ev+Mv,41,39,0,0,
+20180723,5,Low,Mv,43,NA,10,NA,1 lesion/1 leaf/1 plant
+20180723,5,Low,Ev,0,36,0,10,
+20180723,5,Low,Ev+Mv,47,38,0,0,
+20180722,5,Med,Mv,48,NA,0,NA,
+20180722,5,Med,Ev,0,37,0,0,
+20180722,5,Med,Ev+Mv,40,31,3,0,
+20180724,5,High,Mv,37,NA,2,NA,
+20180724,5,High,Ev,3,36,0,0,
+20180724,5,High,Ev+Mv,38,36,4,4,1 lesion/1 leaf/1 plant
+20180721,5,Shade,Mv,46,NA,1,NA,infection may be herbivory
+20180721,6,None,Mv,41,NA,11,NA,brown speckles on lower leaves
+20180721,6,None,Ev,NA,40,NA,0,
+20180721,6,None,Ev+Mv,40,44,0,0,
+20180723,6,Low,Mv,38,NA,0,NA,
+20180723,6,Low,Ev,0,42,0,1,
+20180723,6,Low,Ev+Mv,37,35,12,5,
+20180722,6,Med,Mv,38,NA,1,NA,
+20180722,6,Med,Ev,0,34,0,0,
+20180722,6,Med,Ev+Mv,35,45,0,0,accidentally pulled out 1 Ev (included in total)
+20180724,6,High,Mv,39,NA,10,NA,2-3 lesions/1-2 leaves/1 plant
+20180724,6,High,Ev,0,38,0,11,1 lesion/1 leaf/1 plant
+20180724,6,High,Ev+Mv,35,27,0,1,1 lesion/1 leaf/1 plant
+20180721,6,Shade,Mv,42,NA,21,NA,"1 lesion/leaf with 1-2 leaves/plant, mostly bottom leaves"
+20180801,1,None,Ev,NA,39,NA,0,
+20180802,1,None,Ev+Mv,NA,26,NA,1,Might be other infection coming from soil
+20180731,1,Low,Ev,0,33,NA,4,
+20180801,1,Low,Ev+Mv,NA,27,NA,8,
+20180731,1,Med,Ev,0,25,NA,2,
+20180802,1,Med,Ev+Mv,NA,28,NA,22,
+20180802,1,High,Ev,0,40,NA,5,
+20180802,1,High,Ev+Mv,NA,30,NA,27,
+20180802,2,None,Ev,NA,34,NA,0,
+20180802,2,None,Ev+Mv,NA,26,NA,2,Might be other infection coming from soil
+20180801,2,Low,Ev,0,29,NA,7,
+20180731,2,Low,Ev+Mv,NA,19,NA,3,
+20180802,2,Med,Ev,0,37,NA,1,
+20180802,2,Med,Ev+Mv,NA,28,NA,6,
+20180801,2,High,Ev,0,26,NA,11,Pulled out 1
+20180731,2,High,Ev+Mv,NA,28,NA,4,
+20180802,3,None,Ev,NA,30,NA,0,Pulled out 1
+20180801,3,None,Ev+Mv,NA,30,NA,0,
+20180801,3,Low,Ev,0,35,NA,8,
+20180731,3,Low,Ev+Mv,NA,22,NA,11,
+20180802,3,Med,Ev,0,35,NA,2,
+20180801,3,Med,Ev+Mv,NA,23,NA,8,Pulled out 1
+20180801,3,High,Ev,1,43,NA,3,Thinned 
+20180731,3,High,Ev+Mv,NA,28,NA,8,
+20180801,4,None,Ev,NA,38,NA,0,
+20180801,4,None,Ev+Mv,NA,24,NA,10,Might be other infection coming from soil
+20180731,4,Low,Ev,0,34,NA,8,
+20180731,4,Low,Ev+Mv,NA,27,NA,11,
+20180802,4,Med,Ev,0,27,NA,1,
+20180731,4,Med,Ev+Mv,NA,18,NA,5,
+20180802,4,High,Ev,0,36,NA,3,
+20180802,4,High,Ev+Mv,NA,30,NA,14,
+20180801,5,None,Ev,NA,42,NA,0,
+20180802,5,None,Ev+Mv,NA,27,NA,0,Lots of spots/senescence which could be other infection or stress- didn't count
+20180731,5,Low,Ev,0,33,NA,17,
+20180802,5,Low,Ev+Mv,NA,27,NA,3,
+20180801,5,Med,Ev,0,36,NA,8,
+20180802,5,Med,Ev+Mv,NA,19,NA,0,"Especially hard to count, very tangled. Pulled out 1 Mv"
+20180801,5,High,Ev,0,30,NA,4,
+20180801,5,High,Ev+Mv,NA,24,NA,11,
+20180801,6,None,Ev,NA,36,NA,0,
+20180801,6,None,Ev+Mv,NA,27,NA,8,Might be other infection coming from soil
+20180801,6,Low,Ev,0,34,NA,1,
+20180801,6,Low,Ev+Mv,NA,25,NA,6,
+20180801,6,Med,Ev,0,25,NA,2,
+20180801,6,Med,Ev+Mv,NA,23,NA,4,Pulled out 1
+20180801,6,High,Ev,2,35,NA,22,Thinned
+20180801,6,High,Ev+Mv,NA,25,NA,2,
+20180905,1,None,Mv,43,NA,9,NA,most of the infected were not grouped on same plants
+20181003,1,None,Ev,NA,97,NA,0,
+20180918,1,None,Ev+Mv,40,31,0,4,
+20180907,1,Low,Mv,42,NA,1,NA,
+20180920,1,Low,Ev,NA,86,NA,26,
+20180906,1,Low,Ev+Mv,41,31,0,13,thorough search for infection
+20180822,1,Med,Mv,42,NA,6,NA,"small plants or lower leaves infected, thorough search for infection"
+20181004,1,Med,Ev,NA,79,NA,5,
+20180919,1,Med,Ev+Mv,37,38,2,14,
+20180901,1,High,Mv,42,NA,3,NA,
+20180919,1,High,Ev,NA,132,NA,16,
+20180911,1,High,Ev+Mv,40,29,0,16,"nothing entered for Infected Mv, but there were no samples in the plastic bag"
+20180918,1,Shade,Mv,44,NA,0,NA,
+20180917,2,None,Mv,37,NA,1,NA,
+20180918,2,None,Ev,NA,125,NA,0,
+20180918,2,None,Ev+Mv,34,74,0,17,
+20180914,2,Low,Mv,42,NA,1,NA,
+20180905,2,Low,Ev,NA,63,NA,23,
+20180905,2,Low,Ev+Mv,33,19,3,7,
+20180910,2,Med,Mv,32,NA,0,NA,
+20180914,2,Med,Ev,NA,76,NA,6,
+20180919,2,Med,Ev+Mv,40,41,0,14,
+20180904,2,High,Mv,40,NA,1,NA,"infection on edge, thorough search for infection"
+20181004,2,High,Ev,NA,71,NA,7,
+20180904,2,High,Ev+Mv,42,41,1,8,thorough search for infection
+20180910,2,Shade,Mv,29,NA,0,NA,
+20180822,3,None,Mv,50,NA,1,NA,"3 infections occurred on higher leaves with a lesion on the edge (didn't include because other searches were restricted to lower leaves), one was on a low/small plant, thorough search for infection"
+20180910,3,None,Ev,NA,66,NA,0,
+20180911,3,None,Ev+Mv,37,41,0,2,
+20180918,3,Low,Mv,43,NA,1,NA,
+20180913,3,Low,Ev,NA,71,NA,16,
+20180920,3,Low,Ev+Mv,36,23,0,9,
+20180917,3,Med,Mv,34,NA,0,NA,
+20181003,3,Med,Ev,NA,68,NA,1,
+20180910,3,Med,Ev+Mv,38,34,1,9,
+20180829,3,High,Mv,41,NA,3,NA,thorough search for infection
+20180917,3,High,Ev,NA,79,NA,8,
+20180822,3,High,Ev+Mv,49,45,2,22,"Mv infection on the edge (didn't record whether these were high or low leaves, so they are left in), thorough search for infection"
+NA,3,Shade,Mv,NA,NA,NA,NA,not to be used for germination data
+20180907,4,None,Mv,41,NA,0,NA,
+20180921,4,None,Ev,NA,70,NA,10,
+20180911,4,None,Ev+Mv,47,28,0,4,
+20180910,4,Low,Mv,35,NA,0,NA,
+20180919,4,Low,Ev,NA,81,NA,13,
+20180822,4,Low,Ev+Mv,39,35,2,31,"2 infections on lower leaves, 1 is higher and on the edge (didn't include because other searches were restricted to lower leaves), thorough search for infection"
+20180918,4,Med,Mv,34,NA,1,NA,
+20180917,4,Med,Ev,NA,68,NA,9,
+20180914,4,Med,Ev+Mv,32,29,1,10,
+20180831,4,High,Mv,41,NA,0,NA,thorough search for infection
+20181004,4,High,Ev,NA,79,NA,10,
+20180909,4,High,Ev+Mv,37,30,0,21,
+20180910,4,Shade,Mv,34,NA,0,NA,
+20180920,5,None,Mv,39,NA,0,NA,
+20181004,5,None,Ev,NA,98,NA,4,
+20180914,5,None,Ev+Mv,37,34,0,7,
+20180912,5,Low,Mv,45,NA,0,NA,
+20181003,5,Low,Ev,NA,71,NA,15,
+20180822,5,Low,Ev+Mv,53,42,1,28,"Mv infection on small plant, thorough search for infection"
+20180907,5,Med,Mv,55,NA,1,NA,
+20180917,5,Med,Ev,NA,72,NA,21,
+20180911,5,Med,Ev+Mv,41,29,0,5,
+20180831,5,High,Mv,37,NA,0,NA,thorough search for infection
+20181003,5,High,Ev,NA,71,NA,14,
+20180901,5,High,Ev+Mv,36,29,0,17,"the Ev numbers were entered in 5 High Mv, but I think they belong here because these were missing, thorough search for infection"
+20180910,5,Shade,Mv,38,NA,0,NA,
+20180919,6,None,Mv,41,NA,1,NA,
+20180919,6,None,Ev,NA,120,NA,5,
+20180914,6,None,Ev+Mv,40,72,2,29,
+20180920,6,Low,Mv,37,NA,0,NA,
+20181005,6,Low,Ev,NA,,NA,4,
+20180903,6,Low,Ev+Mv,40,28,0,12,thorough search for infection
+20180822,6,Med,Mv,41,NA,1,NA,"1 infection low, 1 high and on edge (didn't include because other searches were restricted to lower leaves), thorough search for infection"
+20180918,6,Med,Ev,NA,121,NA,0,
+20180914,6,Med,Ev+Mv,37,33,0,7,
+20180917,6,High,Mv,32,NA,2,NA,
+20180919,6,High,Ev,NA,72,NA,22,
+20180822,6,High,Ev+Mv,39,29,0,17,thorough search for infection
+20180901,6,Shade,Mv,37,NA,0,NA,thorough search for infection

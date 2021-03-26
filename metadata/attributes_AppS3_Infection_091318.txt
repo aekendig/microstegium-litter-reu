@@ -1,0 +1,10 @@
+attributeName	attributeDefinition	class	unit	dateTimeFormatString	missingValueCode	missingValueCodeExplanation
+Date	date that data were collected	Date		YYYYMMDD		
+PotID	ID of pot (do not indicate blocking)	numeric	dimensionless			
+Species	species planted in pot	categorical				
+Litter	litter treatment applied to pot	categorical				
+Dry	moisture treatment applied to pot	categorical				
+MvInf	binary variable indicating whether at least two brown foliar lesions were observed on Microstegium vimineum plants in pot	numeric	dimensionless		NA	not applicable
+MvNotes	notes concerning MvInf observations	categorical			blank	no additional observations
+NativeInf	binary variable indicating whether at least two brown foliar lesions were observed on native plants in pot	numeric	dimensionless		NA	not applicable
+NativeNotes	notes concerning NativeInf observations	categorical			blank	no additional observations

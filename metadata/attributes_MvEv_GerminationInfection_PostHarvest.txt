@@ -1,0 +1,10 @@
+attributeName	attributeDefinition	class	unit	dateTimeFormatString	missingValueCode	missingValueCodeExplanation
+Date	date that data were collected	Date		YYYYMMDD	NA	not applicable
+PotID	ID of pot (do not indicate blocking)	numeric	dimensionless			
+Treatment	litter treatment applied to pot	categorical				
+SpPresent	species planted in pot	categorical				
+GermMv	number of Microstegium vimineum plants observed in pot	numeric	dimensionless		NA	not applicable
+GermEv	number of Elymus virginicus plants observed in pot	numeric	dimensionless		NA	not applicable
+InfectedMv	number of Microstegium vimineum plants with at least two foliar lesions	numeric	dimensionless		NA	not applicable
+InfectedEv	number of Elymus virginicus plants with at least two foliar lesions	numeric	dimensionless		NA	not applicable
+Notes	notes about observations made	categorical			blank	no additional observations

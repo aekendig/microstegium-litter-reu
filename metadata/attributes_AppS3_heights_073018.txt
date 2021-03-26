@@ -1,0 +1,11 @@
+attributeName	attributeDefinition	class	unit	dateTimeFormatString	missingValueCode	missingValueCodeExplanation
+Date	date that data were collected	Date		MM/DD/YY		
+PotID	ID of pot (do not indicate blocking)	numeric	dimensionless			
+Species	species planted in pot	categorical				
+Litter	litter treatment applied to pot	categorical				
+Dry	moisture treatment applied to pot	categorical				
+H1_cm	height of plant 1 (haphazardly chosen in pot)	numeric	centimeter			
+H2_cm	height of plant 2 (haphazardly chosen in pot)	numeric	centimeter			
+H3_cm	height of plant 3 (haphazardly chosen in pot)	numeric	centimeter			
+H4_cm	height of plant 4 (haphazardly chosen in pot)	numeric	centimeter			
+H5_cm	height of plant 5 (haphazardly chosen in pot)	numeric	centimeter			

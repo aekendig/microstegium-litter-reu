@@ -1,0 +1,14 @@
+attributeName	code	definition
+Species	Cc	Calamagrostis canadensis
+Species	Gs	Glyceria striata
+Species	Et	Eragrostis trichodes
+Species	Ev	Elymus virginicus
+Species	Mv	Microstegium vimineum
+Species	Pc	Dichanthelium (Panicum) clandestinum
+Treatment	high moisture	pot received high moisture treatment
+Treatment	Dry	pot received dry/low moisture treatment
+LeafMoisture	Y	Yes (water droplets were observed on leaves)
+LeafMoisture	N	No (water droplets were not observed on leaves)
+Notes	Covered by litter	Water droplets could not be observed because leaves were covered by litter
+Notes	But not much	Few water droples
+Notes	started counting only those that have more than 2 leaves with water droplets	"at 1:35 PM on the second day, only pots with at least three leaves with water droplets were assigned a Y for LeafMoisture"

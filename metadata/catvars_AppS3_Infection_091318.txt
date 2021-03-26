@@ -1,0 +1,20 @@
+attributeName	code	definition
+Species	Mv	Microstegium vimineum
+Species	Ev	Elymus virginicus
+Species	Et	Eragrostis trichodes
+Species	Pc	Dichanthelium (Panicum) clandestinum
+Species	Cc	Calamagrostis canadensis
+Species	Gs	Glyceria striata
+Litter	Y	Yes (litter was added to pot)
+Litter	N	No (litter was not added to pot)
+Dry	Y	Yes (pot received dry/low moisture treatment)
+Dry	N	No (pot received high moisture treatment)
+MvNotes	black spots	black spots were observed on leaves
+MvNotes	low	low number of brown lesions observed on leaves
+MvNotes	high	high number of brown lesions observed on leaves
+MvNotes	"light, also black spots"	light brown spots and black spots observed on leaves
+MvNotes	"low, black spots"	low number of brown lesions and black spots observed on leaves
+MvNotes	specks	lesions appeared as small specks rather than defined Bipolaris-like lesions
+NativeNotes	low	low number of brown lesions observed on leaves
+NativeNotes	black spots	black spots were observed on leaves
+NativeNotes	"low, black spots"	low number of brown lesions and black spots observed on leaves

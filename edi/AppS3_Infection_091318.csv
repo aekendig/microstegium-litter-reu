@@ -1,0 +1,66 @@
+﻿Date,PotID,Species,Litter,Dry,MvInf,MvNotes,NativeInf,NativeNotes
+20180913,1,Mv,Y,Y,0,,NA,
+20180913,2,Mv,Y,Y,0,,NA,
+20181002,3,Mv,Y,Y,0,black spots,NA,
+20181002,4,Mv,Y,Y,0,,NA,
+20181002,5,Mv,Y,Y,0,,NA,
+20180913,1,Mv,Y,N,0,,NA,
+20181002,2,Mv,Y,N,1,,NA,
+20181002,3,Mv,Y,N,1,low,NA,
+20181002,4,Mv,Y,N,1,high,NA,
+20181002,5,Mv,Y,N,1,low,NA,
+20181002,1,Mv,N,N,0,black spots,NA,
+20181002,2,Mv,N,N,0,,NA,
+20181002,3,Mv,N,N,0,black spots,NA,
+20181002,4,Mv,N,N,1,"light, also black spots",NA,
+20181002,5,Mv,N,N,1,"low, black spots",NA,
+20181002,1,Ev,Y,N,0,,1,
+20180913,2,Ev,Y,N,0,,1,
+20180913,3,Ev,Y,N,1,low,1,
+20181002,4,Ev,Y,N,1,,1,
+20181002,5,Ev,Y,N,1,,1,
+20181002,1,Ev,N,N,NA,,1,low
+20181002,2,Ev,N,N,NA,,1,low
+20181002,3,Ev,N,N,NA,,0,
+20181002,4,Ev,N,N,NA,,0,
+20181002,5,Ev,N,N,NA,,1,
+20181002,1,Et,Y,N,1,low,1,
+20180913,2,Et,Y,N,0,,1,
+20180913,3,Et,Y,N,1,,1,
+20181002,4,Et,Y,N,1,,1,
+20180913,5,Et,Y,N,1,low,1,
+20181002,1,Et,N,N,NA,,1,
+20181002,2,Et,N,N,NA,,1,
+20181002,3,Et,N,N,NA,,1,
+20181002,4,Et,N,N,NA,,1,
+20181002,5,Et,N,N,NA,,1,
+20181002,1,Pc,Y,N,1,low,1,black spots
+20181002,2,Pc,Y,N,1,low,0,black spots
+20180913,3,Pc,Y,N,0,black spots,0,
+20181002,4,Pc,Y,N,0,black spots,0,black spots
+20181002,5,Pc,Y,N,0,,0,
+20181002,1,Pc,N,N,NA,,0,black spots
+20181002,2,Pc,N,N,NA,,1,"low, black spots"
+20181002,3,Pc,N,N,NA,,1,"low, black spots"
+20181002,4,Pc,N,N,NA,,0,black spots
+20181002,5,Pc,N,N,NA,,1,black spots
+20181002,1,Cc,Y,N,0,,0,
+20181002,2,Cc,Y,N,0,,0,
+20181002,3,Cc,Y,N,1,specks,0,
+20180913,4,Cc,Y,N,0,,1,low
+20180913,5,Cc,Y,N,0,,0,
+20181002,1,Cc,N,N,NA,,0,
+20181002,2,Cc,N,N,NA,,0,
+20181002,3,Cc,N,N,NA,,0,
+20181002,4,Cc,N,N,NA,,0,
+20181002,5,Cc,N,N,NA,,0,
+20181002,1,Gs,Y,N,0,,0,
+20181002,2,Gs,Y,N,1,,0,
+20181002,3,Gs,Y,N,0,,1,
+20181002,4,Gs,Y,N,0,,0,
+20181002,5,Gs,Y,N,0,,1,
+20181002,1,Gs,N,N,NA,,1,
+20181002,2,Gs,N,N,NA,,1,
+20181002,3,Gs,N,N,NA,,1,low
+20180913,4,Gs,N,N,NA,,1,
+20181002,5,Gs,N,N,NA,,1,

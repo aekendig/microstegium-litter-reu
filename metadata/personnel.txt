@@ -1,0 +1,15 @@
+givenName	middleInitial	surName	organizationName	electronicMailAddress	userId	role	projectTitle	fundingAgency	fundingNumber
+Liliana		Benitez	New College of Florida	liliana.benitez16@ncf.edu	0000-0003-2648-6515	creator			
+Amy	E	Kendig	University of Florida	aekendig@gmail.com	0000-0002-2774-1795	contact			
+Amy	E	Kendig	University of Florida	aekendig@gmail.com	0000-0002-2774-1795	creator			
+Ashish		Adhikari	University of Florida	adhikariashish@ufl.edu		creator			
+Keith		Clay	Tulane University	clay@tulane.edu	0000-0002-3956-0887	PI		USDA	2017-67013-26870 
+Keith		Clay	Tulane University	clay@tulane.edu	0000-0002-3956-0887	creator			
+Philip	F	Harmon	University of Florida	pfharmon@ufl.edu	0000-0003-2288-5148	PI		USDA	2017-67013-26870 
+Philip	F	Harmon	University of Florida	pfharmon@ufl.edu	0000-0003-2288-5148	creator			
+Robert	D	Holt	University of Florida	rdholt@ufl.edu		PI		USDA	2017-67013-26870 
+Robert	D	Holt	University of Florida	rdholt@ufl.edu		creator			
+Erica	M	Goss	University of Florida	emgoss@ufl.edu	0000-0003-3512-2107	PI		USDA	2017-67013-26870 
+Erica	M	Goss	University of Florida	emgoss@ufl.edu	0000-0003-3512-2107	creator			
+S	Luke	Flory	University of Florida	flory@ufl.edu	0000-0003-3336-8613	PI		USDA	2017-67013-26870 
+S	Luke	Flory	University of Florida	flory@ufl.edu	0000-0003-3336-8613	creator			
