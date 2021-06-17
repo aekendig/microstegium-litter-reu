@@ -13,9 +13,11 @@ rm(list=ls())
 # load libraries
 library(tidyverse)
 library(broom)
+library(multcomp)
 
 # import data
 MvEstDat <- read_csv("intermediate-data/mv_establishment_data.csv")
+MvCountDat <- read_csv("intermediate-data/mv_final_count_data.csv")
 EvEstDat <- read_csv("intermediate-data/ev_establishment_data.csv")
 EvInfDat <- read_csv("intermediate-data/ev_infection_data.csv")
 
@@ -24,6 +26,11 @@ EvInfDat <- read_csv("intermediate-data/ev_infection_data.csv")
 
 # Mv establishment
 MvEstDat <- MvEstDat %>%
+  mutate(Litter = factor(Litter, levels = c("None", "Low", "Med", "High")),
+         Planting = ifelse(Competition == 0, "alone", "in competition"))
+
+# Mv counts
+MvCountDat <- MvCountDat %>%
   mutate(Litter = factor(Litter, levels = c("None", "Low", "Med", "High")),
          Planting = ifelse(Competition == 0, "alone", "in competition"))
 
@@ -90,38 +97,38 @@ anova(mv_est_mod1, mv_est_mod3, test = "Chi") # no
 #### Mv abundance ####
 
 # mean vs. variance
-mean(MvEstDat$NewGermMv2)
-var(MvEstDat$NewGermMv2) # smaller
+mean(MvCountDat$GermMv)
+var(MvCountDat$GermMv) # smaller
 
 # continuous litter
-mv_abu_mod1 <- glm(NewGermMv2 ~ Litter.g * Competition, data = MvEstDat, family = poisson)
+mv_abu_mod1 <- glm(GermMv ~ Litter.g * Competition, data = MvCountDat, family = poisson)
 summary(mv_abu_mod1)
 
 # categorical litter
-mv_abu_mod2 <- glm(NewGermMv2 ~ Litter * Competition, data = MvEstDat, family = poisson)
+mv_abu_mod2 <- glm(GermMv ~ Litter * Competition, data = MvCountDat, family = poisson)
 summary(mv_abu_mod2)
 
 # compare models
 AIC(mv_abu_mod1, mv_abu_mod2)
-# continuous fits better: delta AIC = 5.3
+# continuous fits better: delta AIC = 7.1
 # plot(mv_abu_mod1)
 
 # remove interaction?
 mv_abu_mod3 <- update(mv_abu_mod1, ~. -Litter.g:Competition)
 summary(mv_abu_mod3)
 anova(mv_abu_mod1, mv_abu_mod3, test = "Chi") # yes
-# dev: -0.69, P: 0.41
+# dev: -0.69, P: 0.45
 
 # remove main effects?
 mv_abu_mod4 <- update(mv_abu_mod3, ~. -Competition)
 summary(mv_abu_mod4)
 anova(mv_abu_mod3, mv_abu_mod4, test = "Chi") # yes
-# dev: -0.22, P: 0.64
+# dev: -0.23, P: 0.63
 
 mv_abu_mod5 <- update(mv_abu_mod4, ~. -Litter.g)
 summary(mv_abu_mod5)
 anova(mv_abu_mod4, mv_abu_mod5, test = "Chi") # yes
-# dev: -0.62, P: 0.43
+# dev: -0.19, P: 0.66
 
 
 #### Ev establishment ####
@@ -156,6 +163,16 @@ summary(ev_est_mod5)
 anova(ev_est_mod4, ev_est_mod5, test = "Chi") # no
 # dev: -22.04, P < 0.001
 
+# post-hoc test
+summary(glht(ev_est_mod4, linfct = mcp(Litter = "Tukey")))
+ev_est_mult_comp <- summary(glht(ev_est_mod4, linfct = mcp(Litter = "Tukey")))$test
+ev_est_mult_comp2 <- confint(glht(ev_est_mod4, linfct = mcp(Litter = "Tukey")))$confint
+ev_est_mult_comp3 <- tibble(comp = names(ev_est_mult_comp$coefficients),
+                            diff = as.numeric(ev_est_mult_comp$coefficients),
+                            lwr = as.numeric(ev_est_mult_comp2[,2]),
+                            upr = as.numeric(ev_est_mult_comp2[,3]),
+                            p = as.numeric(ev_est_mult_comp$pvalues))
+
 
 #### Ev infection ####
 
@@ -189,14 +206,27 @@ summary(ev_inf_mod5)
 anova(ev_inf_mod3, ev_inf_mod5, test = "Chi") # no
 # dev: -247.28, P < 0.001
 
+# post-hoc test
+summary(glht(ev_inf_mod3, linfct = mcp(Litter = "Tukey")))
+ev_inf_mult_comp <- summary(glht(ev_inf_mod3, linfct = mcp(Litter = "Tukey")))$test
+ev_inf_mult_comp2 <- confint(glht(ev_inf_mod3, linfct = mcp(Litter = "Tukey")))$confint
+ev_inf_mult_comp3 <- tibble(comp = names(ev_inf_mult_comp$coefficients),
+                            diff = as.numeric(ev_inf_mult_comp$coefficients),
+                            lwr = as.numeric(ev_inf_mult_comp2[,2]),
+                            upr = as.numeric(ev_inf_mult_comp2[,3]),
+                            p = as.numeric(ev_inf_mult_comp$pvalues))
+
 
 #### outputs ####
 
 # save models
-save(mv_est_mod1, file = "./output/mv_establishment_model.rda")
-save(ev_est_mod2, file = "./output/ev_establishment_full_model.rda")
+save(mv_est_mod1, file = "output/mv_establishment_model.rda")
+save(ev_est_mod4, file = "output/ev_establishment_simplified_model.rda")
+save(ev_inf_mod3, file = "output/ev_infection_simplified_model.rda")
 
-write_csv(tidy(mv_est_mod1), "./output/mv_establishment_full_model.csv")
-write_csv(tidy(mv_abu_mod1), "./output/mv_abundance_full_model.csv")
-write_csv(tidy(ev_est_mod2), "./output/ev_establishment_full_model.csv")
-write_csv(tidy(ev_inf_mod2), "./output/ev_infection_full_model.csv")
+write_csv(tidy(mv_est_mod1), "output/mv_establishment_full_model.csv")
+write_csv(tidy(mv_abu_mod1), "output/mv_abundance_full_model.csv")
+write_csv(tidy(ev_est_mod2), "output/ev_establishment_full_model.csv")
+write_csv(ev_est_mult_comp3, "output/ev_establishment_mult_comp.csv")
+write_csv(tidy(ev_inf_mod2), "output/ev_infection_full_model.csv")
+write_csv(ev_inf_mult_comp3, "output/ev_infection_mult_comp.csv")

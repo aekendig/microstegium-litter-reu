@@ -63,7 +63,7 @@ dat2 %>%
   geom_line()
 
 dat2 %>%  
-  select(Date, Date2) %>%
+  dplyr::select(Date, Date2) %>%
   unique() %>%
   data.frame()
 
@@ -82,14 +82,14 @@ dat2 %>%
 # get the older data
 mvInit <- dat2 %>%
   filter(Litter.bin == 1 & SpPresent == "Ev" & Date2 =="2018-07-11") %>%
-  select(TrtID, GermMv) %>%
+  dplyr::select(TrtID, GermMv) %>%
   rename(NewGermMv = GermMv)
 mvInit
 
 # update next dataset (late July)
 mvJul <- dat2 %>%
   filter(Litter.bin == 1 & SpPresent == "Ev" & Date2 =="2018-07-24") %>%
-  select(Date2, TrtID, GermMv) %>%
+  dplyr::select(Date2, TrtID, GermMv) %>%
   full_join(mvInit) %>%
   mutate(NewGermMv = GermMv + NewGermMv)
 mvJul
@@ -97,16 +97,16 @@ mvJul
 # update next dataset (early August)
 mvAug <- dat2 %>%
   filter(Litter.bin == 1 & SpPresent == "Ev" & Date2 =="2018-08-02") %>%
-  select(Date2, TrtID, GermMv) %>%
-  full_join(select(mvJul, -c(GermMv, Date2))) %>%
+  dplyr::select(Date2, TrtID, GermMv) %>%
+  full_join(dplyr::select(mvJul, -c(GermMv, Date2))) %>%
   mutate(NewGermMv = GermMv + NewGermMv)
 mvAug
 
 # update next dataset (post harverst)
 mvOct <- dat2 %>%
   filter(Litter.bin == 1 & SpPresent == "Ev" & Date2 =="2018-10-05") %>%
-  select(Date2, TrtID, GermMv) %>%
-  full_join(select(mvAug, -c(GermMv, Date2))) 
+  dplyr::select(Date2, TrtID, GermMv) %>%
+  full_join(dplyr::select(mvAug, -c(GermMv, Date2))) 
 mvOct
 
 # merge new data
@@ -136,7 +136,7 @@ corSum
 # mean of mv germination in ev treatments
 corSub <- corSum %>%
   filter(SpPresent == "Ev") %>%
-  select(-SpPresent) %>%
+  dplyr::select(-SpPresent) %>%
   mutate(corGerm = replace_na(corGerm, 0))
 corSub
 
@@ -165,7 +165,7 @@ pulledNotes = unlist(lapply(dat4$Notes, grep, pattern="Pulled",
 pulledNotes
 pulledDat <- dat4 %>%
   filter(Notes %in% pulledNotes) %>%
-  select(Date2,TrtID,Notes)
+  dplyr::select(Date2,TrtID,Notes)
 pulledDat
 pulledDat$Notes
 
@@ -174,29 +174,29 @@ pulledDat$PulledEv = c(1, 2, 1, 2, 1, 1, 0, 1, 1, 1, 1, 0, 1) # assuming that wh
 pulledDat$PulledMv = c(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0)
 
 # check values
-select(pulledDat, Notes, PulledEv, PulledMv)
+dplyr::select(pulledDat, Notes, PulledEv, PulledMv)
 
 # update data with July pulls
 julPulledDat <- dat4 %>%
   filter(Date2 > "2018-07-24") %>%
   full_join(filter(pulledDat, Date2 == "2018-07-24") %>% 
-              select(-c(Date2, Notes))) %>%
+              dplyr::select(-c(Date2, Notes))) %>%
   mutate(PulledEv = replace_na(PulledEv, 0),
          PulledMv = replace_na(PulledMv, 0),
          NewGermMv2 = NewGermMv + PulledMv,
          NewGermEv = GermEv + PulledEv) %>%
-  select(-c(PulledEv, PulledMv))
+  dplyr::select(-c(PulledEv, PulledMv))
 
 # update data with August pulls
 augPulledDat <- julPulledDat %>%
   filter(Date2 > "2018-08-02") %>%
   full_join(filter(pulledDat, Date2 == "2018-08-02") %>% 
-              select(-c(Date2, Notes))) %>%
+              dplyr::select(-c(Date2, Notes))) %>%
   mutate(PulledEv = replace_na(PulledEv, 0),
          PulledMv = replace_na(PulledMv, 0),
          NewGermMv2 = NewGermMv2 + PulledMv,
          NewGermEv = NewGermEv + PulledEv) %>%
-  select(-c(PulledEv, PulledMv))
+  dplyr::select(-c(PulledEv, PulledMv))
 
 # merge full data
 dat5 <- dat4 %>%
@@ -229,9 +229,9 @@ dat6 <- dat5 %>%
   filter(TrtID != "Mv.Med.yes.3")
 
 # check values greater than 50
-filter(dat6, CorGermMv > 50) %>% select(GermMv, NewGermMv, NewGermMv2, CorGermMv) # all started as greater than 50
+filter(dat6, CorGermMv > 50) %>% dplyr::select(GermMv, NewGermMv, NewGermMv2, CorGermMv) # all started as greater than 50
 
-filter(dat6, NewGermEv > 50 & Date < "2018-10-05") %>% select(GermEv, NewGermEv) # none
+filter(dat6, NewGermEv > 50 & Date < "2018-10-05") %>% dplyr::select(GermEv, NewGermEv) # none
 
 # if the estimated planted+litter for Mv is lower than observed, increase it
 # proportion established
@@ -294,6 +294,25 @@ dat7 %>%
   facet_grid(Litter ~ SpPresent)
 # last date
 
+# counts for biomass: which date to use
+dat7 %>%
+  filter(SpPresent != "Ev" & Shade == "no") %>%
+  ggplot(aes(x = Date2, y = GermMv)) +
+  stat_summary(fun = "mean", geom = "point") +
+  stat_summary(fun = "mean", geom = "line") +
+  stat_summary(fun.data = "mean_cl_boot", geom = "errorbar") +
+  facet_grid(Litter ~ SpPresent)
+# last date
+
+dat7 %>%
+  filter(SpPresent != "Mv") %>%
+  ggplot(aes(x = Date2, y = GermEv)) +
+  stat_summary(fun = "mean", geom = "point") +
+  stat_summary(fun = "mean", geom = "line") +
+  stat_summary(fun.data = "mean_cl_boot", geom = "errorbar") +
+  facet_grid(Litter ~ SpPresent)
+# last date
+
 
 #### subset data ####
 
@@ -309,8 +328,96 @@ EvInfDat <- dat7 %>%
   filter(SpPresent != "Mv" & Date2 == "2018-10-05" & !is.na(GermEv))
 # one replicate from Ev low litter was lost
 
+MvCountDat <- dat7 %>%
+  filter(SpPresent != "Ev" & Date2 == "2018-10-05") %>%
+  filter(Shade == "no")
+
 # save data
 write_csv(MvEstDat, "intermediate-data/mv_establishment_data.csv")
 write_csv(EvEstDat, "intermediate-data/ev_establishment_data.csv")
 write_csv(EvInfDat, "intermediate-data/ev_infection_data.csv")
+write_csv(MvCountDat, "intermediate-data/mv_final_count_data.csv")
 write_csv(dat7, "intermediate-data/establishment_infection_data.csv")
+
+
+#### supplementary figure ####
+
+# number Mv removed
+mvRem <- dat2 %>%
+  filter(SpPresent == "Ev" & !is.na(GermMv)) %>%
+  dplyr::select(TrtID, Litter, SpPresent, Date2, GermMv) %>%
+  pivot_wider(names_from = Date2,
+              values_from = GermMv) %>%
+  rename(jun_21 = '2018-06-21',
+         jul_04 = '2018-07-04',
+         jul_11 = '2018-07-11',
+         aug_02 = '2018-08-02') %>%
+  mutate(jul_11 = jul_11 - jul_04) %>%
+  pivot_longer(cols = jun_21:aug_02,
+               names_to = "Date",
+               values_to = "GermMv") %>%
+  mutate(Date = fct_recode(Date, 
+                           '2018-06-21' = 'jun_21',
+                           '2018-07-04' = 'jul_04',
+                           '2018-07-11' = 'jul_11',
+                           '2018-08-02' = 'aug_02') %>%
+           as.character() %>% as.Date())
+
+# time intervals
+mvRem %>%
+  dplyr::select(Date) %>%
+  unique() %>%
+  arrange(Date) %>%
+  mutate(days = lead(Date) - Date)
+
+dat8 <- dat7 %>%
+  dplyr::select(TrtID, Litter, SpPresent, Date2, NewGermEv, NewGermMv2) %>%
+  full_join(mvRem %>%
+              rename(GermMvRem = GermMv, Date2 = Date)) %>%
+  mutate(GermEv = NewGermEv,
+         GermMv = case_when(SpPresent == "Ev" ~ GermMvRem,
+                             TRUE ~ NewGermMv2),
+         SpPresent = fct_recode(SpPresent, "Both" = "Ev+Mv")) %>%
+  dplyr::select(-c(NewGermEv, NewGermMv2, GermMvRem)) %>%
+  pivot_longer(cols = c(GermEv, GermMv),
+               names_to = "Sp",
+               values_to = "Germ",
+               names_prefix = "Germ") %>%
+  filter(!is.na(Germ))
+
+dat8Text <- dat8 %>%
+  filter(Sp == "Ev" & Date2 == max(dat8$Date2)) %>%
+  group_by(Sp, SpPresent, Litter, Date2) %>%
+  summarise(Germ = mean(Germ)) %>%
+  ungroup() %>%
+  mutate(til = "tillers",
+         Germ = case_when(SpPresent == "Ev" & Litter == "None" ~ Germ - 18,
+                          SpPresent == "Ev" & Litter != "None" ~ Germ + 14,
+                          SpPresent == "Both" & Litter == "None" ~ Germ + 12,
+                          SpPresent == "Both" & Litter != "None" ~ Germ - 8))
+
+# figure for supplement
+tiff("output/AppS2_FigS1.tiff", width = 5, height = 5, units = "in", res = 300)
+ggplot(dat8, aes(x = Date2, y = Germ, color = Sp)) +
+  stat_summary(geom = "errorbar", width = 0, fun.data = "mean_se") +
+  stat_summary(geom = "line", fun = "mean") +
+  stat_summary(geom = "point", size = 0.5, fun = "mean") +
+  geom_text(data = dat8Text, aes(label = til), hjust = 1, size = 2, show.legend = F) +
+  facet_grid(Litter ~ SpPresent) +
+  labs(x = "Date", y = "Seedlings") +
+  scale_color_manual(values = c("black", "deepskyblue2"), name = "Species") +
+  theme_bw() +
+  theme(panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text = element_text(size = 7, color = "black"),
+        axis.title = element_text(size = 9),
+        legend.text = element_text(size = 7),
+        legend.title = element_text(size = 7),
+        strip.background = element_blank(),
+        strip.text = element_text(size = 8),
+        legend.position = c(0.01, 0.93),
+        legend.margin = margin(-0.1, 0, 0.2, 2, unit = "cm"),
+        legend.background = element_blank(),
+        legend.key.height = unit(0.3, unit = "cm"))
+dev.off()

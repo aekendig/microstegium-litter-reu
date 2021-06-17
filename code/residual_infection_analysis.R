@@ -14,8 +14,9 @@ library(tidyverse)
 library(broom)
 
 # load model
-load("output/ev_percap_bio_full_model.rda")
-load("output/ev_establishment_full_model.rda")
+load("output/ev_tot_bio_simplified_model.rda")
+load("output/ev_percap_bio_simplified_model.rda")
+load("output/ev_establishment_simplified_model.rda")
 
 # import data
 EvInfDat <- read_csv("intermediate-data/ev_infection_data.csv")
@@ -28,36 +29,58 @@ EvEstDat <- read_csv("intermediate-data/ev_establishment_data.csv")
 # select columns
 # combine data
 # add columns
-bioDat <- EvBioDat %>%
-  select(PotID, Litter, Competition, Weight_g, LogPerCapWeight.g) %>%
-  mutate(ResidWeight = resid(ev_bio_mod2)) %>%
+totBioDat <- EvBioDat %>%
+  dplyr::select(PotID, Litter, Competition, LogWeight.g) %>%
+  filter(!is.na(LogWeight.g)) %>%
+  mutate(ResidWeight = resid(ev_tot_bio_mod3)) %>%
   left_join(EvInfDat %>%
-              select(PotID, Litter, Competition, PropInfEv)) %>%
+              dplyr::select(PotID, Litter, Competition, PropInfEv)) %>%
+  mutate(Litter = factor(Litter, levels = c("None", "Low", "Med", "High")),
+         Planting = dplyr::recode(Competition, "0" = "alone", "1" = "in competition")) %>%
+  filter(!is.na(PropInfEv))
+
+pcBioDat <- EvBioDat %>%
+  dplyr::select(PotID, Litter, Competition, LogPerCapWeight.g) %>%
+  filter(!is.na(LogPerCapWeight.g)) %>%
+  mutate(ResidWeight = resid(ev_bio_mod4)) %>%
+  left_join(EvInfDat %>%
+              dplyr::select(PotID, Litter, Competition, PropInfEv)) %>%
   mutate(Litter = factor(Litter, levels = c("None", "Low", "Med", "High")),
          Planting = dplyr::recode(Competition, "0" = "alone", "1" = "in competition"))
 
-# select columns
-# combine data
-# add columns
 estDat <- EvEstDat %>%
-  select(PotID, Litter, Competition, PropEstEv) %>%
-  mutate(ResidEst = resid(ev_est_mod2)) %>%
+  dplyr::select(PotID, Litter, Competition, PropEstEv) %>%
+  mutate(ResidEst = resid(ev_est_mod4)) %>%
   left_join(EvInfDat %>%
-              select(PotID, Litter, Competition, PropInfEv)) %>%
+              dplyr::select(PotID, Litter, Competition, PropInfEv)) %>%
   mutate(Litter = factor(Litter, levels = c("None", "Low", "Med", "High")),
-         Planting = dplyr::recode(Competition, "0" = "alone", "1" = "in competition"))
+         Planting = dplyr::recode(Competition, "0" = "alone", "1" = "in competition")) %>%
+  filter(!is.na(PropInfEv))
 
 
 #### visualizations ####
 
 # raw weight
-ggplot(bioDat, aes(PropInfEv, Weight_g)) +
+ggplot(totBioDat, aes(PropInfEv, LogWeight.g)) +
   geom_point() +
   geom_smooth(method = "lm", formula = y ~ x) +
-  facet_wrap(~ Planting, scales = "free")
+  facet_wrap(~ Planting)
+
+# residual weight 
+# account for effect of competition on weight
+ggplot(totBioDat, aes(PropInfEv, ResidWeight)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x)
+
+# raw weight
+ggplot(pcBioDat, aes(PropInfEv, LogPerCapWeight.g)) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x) +
+  facet_wrap(~ Planting)
 
 # residual weight
-ggplot(bioDat, aes(PropInfEv, ResidWeight)) +
+# account for effect of competition and litter on weight
+ggplot(pcBioDat, aes(PropInfEv, ResidWeight)) +
   geom_point() +
   geom_smooth(method = "lm", formula = y ~ x)
 
@@ -67,6 +90,7 @@ ggplot(estDat, aes(PropInfEv, PropEstEv)) +
   geom_smooth(method = "lm", formula = y ~ x)
 
 # residual establishment
+# account for effect of litter on weight
 ggplot(estDat, aes(PropInfEv, ResidEst)) +
   geom_point() +
   geom_smooth(method = "lm", formula = y ~ x)
@@ -74,8 +98,11 @@ ggplot(estDat, aes(PropInfEv, ResidEst)) +
 
 #### stats ####
 
-ev_bio_inf_mod1 <- lm(ResidWeight ~ PropInfEv, bioDat)
-summary(ev_bio_inf_mod1)
+ev_tot_bio_inf_mod1 <- lm(ResidWeight ~ PropInfEv, totBioDat)
+summary(ev_tot_bio_inf_mod1)
+
+ev_pc_bio_inf_mod1 <- lm(ResidWeight ~ PropInfEv, pcBioDat)
+summary(ev_pc_bio_inf_mod1)
 
 ev_est_inf_mod1 <- lm(ResidEst ~ PropInfEv, estDat)
 summary(ev_est_inf_mod1)
@@ -83,5 +110,6 @@ summary(ev_est_inf_mod1)
 
 #### output ####
 
-write_csv(tidy(ev_bio_inf_mod1), "output/ev_bio_resid_full_model.csv")
+write_csv(tidy(ev_tot_bio_inf_mod1), "output/ev_tot_bio_resid_full_model.csv")
+write_csv(tidy(ev_pc_bio_inf_mod1), "output/ev_pc_bio_resid_full_model.csv")
 write_csv(tidy(ev_est_inf_mod1), "output/ev_est_resid_full_model.csv")
