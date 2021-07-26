@@ -343,6 +343,8 @@ write_csv(dat7, "intermediate-data/establishment_infection_data.csv")
 #### supplementary figure ####
 
 # number Mv removed
+# goal is to show actual numbers that were in the pots, not the cumulative numbers had we not removed the Mv (values in finalized dataset)
+# need to subtract 7/4/ from 7/11 because 7/4 counts are in the 7/11 dataset despite removal
 mvRem <- dat2 %>%
   filter(SpPresent == "Ev" & !is.na(GermMv)) %>%
   dplyr::select(TrtID, Litter, SpPresent, Date2, GermMv) %>%
@@ -363,13 +365,14 @@ mvRem <- dat2 %>%
                            '2018-08-02' = 'aug_02') %>%
            as.character() %>% as.Date())
 
-# time intervals
+# time intervals between Mv removals
 mvRem %>%
   dplyr::select(Date) %>%
   unique() %>%
   arrange(Date) %>%
   mutate(days = lead(Date) - Date)
 
+# combien removals with rest of data
 dat8 <- dat7 %>%
   dplyr::select(TrtID, Litter, SpPresent, Date2, NewGermEv, NewGermMv2) %>%
   full_join(mvRem %>%
@@ -421,3 +424,19 @@ ggplot(dat8, aes(x = Date2, y = Germ, color = Sp)) +
         legend.background = element_blank(),
         legend.key.height = unit(0.3, unit = "cm"))
 dev.off()
+
+
+#### t-test of unintended Mv ####
+
+# select fourth harvesting date
+# select Mv in treatments of interest
+dat8sub <- dat8 %>%
+  filter(Date2 == sort(unique(Date2))[4] & Sp == "Mv" & SpPresent != "Mv")
+
+# visualize
+ggplot(dat8sub, aes(x = SpPresent, y = Germ)) +
+  stat_summary(geom = "errorbar", width = 0, fun.data = "mean_se") +
+  stat_summary(geom = "point", fun = "mean", size = 2)
+
+# t test
+t.test(Germ ~ SpPresent, data = dat8sub)

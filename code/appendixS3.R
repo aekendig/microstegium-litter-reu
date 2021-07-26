@@ -204,3 +204,9 @@ plot_grid(moistFig, litFig,
           label_size = 11,
           rel_widths = c(0.5, 1))
 dev.off()
+
+#### 3A alone ####
+
+pdf("output/AppS3_Figure3a.pdf", width = 3, height = 3)
+moistFig
+dev.off()
