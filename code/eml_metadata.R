@@ -67,8 +67,10 @@ dnlist <- c("App. S3 height data",
 #### code descriptors ####
 
 # list of code files
-clist <- list.files(path = "./code",
-                    pattern = ".R")
+clist <- c(list.files(path = "./code",
+                      pattern = ".R"),
+           list.files(path = "./edi",
+                      pattern = ".pdf"))
 
 # remove the eml code
 clist <- clist[-3]
@@ -80,7 +82,8 @@ cdlist <- c(
   "code to process data for establishment and disease incidence analyses",
   "code to analyze establishment and disease incidence",
   "code for figures and values in main text",
-  "code to analyze model residuals"
+  "code to analyze model residuals",
+  "description of experiment in Appendix S3"
 )
 
 # name list
@@ -89,7 +92,8 @@ cnlist <- c("App. S3 code",
             "Data processing",
             "Establishment and disease incidence analysis",
             "Figures and values",
-            "Residuals analysis")
+            "Residuals analysis",
+            "App. S3 experiment description")
 
 # print table
 # ctable <- data.frame(code = clist, desription = cdlist)
@@ -102,7 +106,7 @@ cnlist <- c("App. S3 code",
 
 make_eml(path = "./metadata",
          data.path = "./edi",
-         dataset.title = "Invasive grass litter suppresses native species and promotes disease",
+         dataset.title = "Invasive grass litter suppresses a native grass species and promotes disease",
          data.table = dlist,
          data.table.name = dnlist,
          data.table.description = ddlist,
@@ -116,10 +120,10 @@ make_eml(path = "./metadata",
          maintenance.description = "completed", 
          user.id = "aekendig",
          user.domain = "EDI",
-         package.id = "edi.189.2")
+         package.id = "edi.189.3")
 
 
 #### check warnings ####
 
-eml <- EML::read_eml("./metadata/edi.189.2.xml")
+eml <- EML::read_eml("./metadata/edi.189.3.xml")
 EML::eml_validate(eml)

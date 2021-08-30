@@ -295,7 +295,7 @@ ev_inf_fig <- ggplot(EvInfSum, aes(x = Litter.g, y = y, fill = Planting, shape =
 
 #### combined establishment and infection figures ####
 
-tiff("output/Fig2.tiff", width = 6, height = 6, units = "in", res = 300)
+pdf("output/Fig2.pdf", width = 6, height = 6)
 plot_grid(mv_est_fig, mv_cnt_fig, ev_est_fig, ev_inf_fig,
           nrow = 2,
           labels = c("a", "b", "c", "d"),
@@ -407,7 +407,7 @@ ev_pcbio_fig <- ggplot(EvPCBioSum, aes(x = Litter.g, y = y, fill = Planting, sha
 
 #### combined biomass figure ####
 
-tiff("output/Fig3.tiff", width = 6, height = 6, units = "in", res = 300)
+pdf("output/Fig3.pdf", width = 6, height = 6)
 plot_grid(mv_totbio_fig, mv_pcbio_fig, ev_totbio_fig, ev_pcbio_fig,
           nrow = 2,
           labels = c("a", "b", "c", "d"),
