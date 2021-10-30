@@ -4,6 +4,13 @@
 # Generate metadata files by editing current ones or generating them (see Github page for tutorial)
 # Edit and run this script
 
+# all code and data are up to date at time of submission to Ecosphere (staging v3)
+# no additional changes following that submission
+# establishment_data_processing.R edi: Oct 30 removed extraneous notes
+# figures_values.R code: Aug 27 converted tiffs to pdf to email manuscript
+# will need to put code and data in folders within edi folder to run script
+# remove them from folders before final step
+
 
 #### set up ####
 

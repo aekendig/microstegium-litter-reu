@@ -145,10 +145,6 @@ corSub %>%
   ggplot(aes(x = Date2, y = corGerm, color = Litter)) +
   geom_point() +
   geom_line()
-# drop in Low"
-# Low 1 is at 3 on 6/25, then drops
-# Low 2 is at 1 on 6/25, then drops
-# These may be due to observational errors or plants dying. Either way, the same error or change could have occurred in other pots, so keep these numbers the same.
 
 # add germination corrections to full data
 dat4 <- full_join(dat3,corSub)
