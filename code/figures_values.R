@@ -355,7 +355,7 @@ EvBioSum <- EvBioDat %>%
             ymax = mean_cl_boot(Weight_g)$ymax) %>%
   ungroup() %>%
   mutate(lets = c("a", "A", "b", "B", "ab", "AB", "ab", "AB"),
-         lety = ymax + 0.2)
+         lety = ymax + 0.3)
 
 ev_totbio_fig <- ggplot(EvBioSum, aes(x = Litter.g, y = y, fill = Planting, shape = Planting, linetype = Planting)) +
   geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0, position = position_dodge(0.3), linetype = "solid", size = 0.4) +

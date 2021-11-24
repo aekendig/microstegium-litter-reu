@@ -396,7 +396,7 @@ dat8Text <- dat8 %>%
                           SpPresent == "Both" & Litter != "None" ~ Germ - 8))
 
 # figure for supplement
-tiff("output/AppS2_FigS1.tiff", width = 5, height = 5, units = "in", res = 300)
+pdf("output/AppS2_FigS1.pdf", width = 5, height = 5)
 ggplot(dat8, aes(x = Date2, y = Germ, color = Sp)) +
   stat_summary(geom = "errorbar", width = 0, fun.data = "mean_se") +
   stat_summary(geom = "line", fun = "mean") +
